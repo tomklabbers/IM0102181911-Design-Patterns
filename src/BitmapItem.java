@@ -20,7 +20,7 @@ import java.io.IOException;
  * @version 1.6 2014/05/16 Sylvia Stuurman
 */
 
-public class BitmapItem extends SlideItem {
+public class BitmapItem extends ViewableSlideItem {
   private BufferedImage bufferedImage;
   private String imageName;
   

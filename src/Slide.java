@@ -18,14 +18,14 @@ public class Slide {
 	public final static int HEIGHT = 800;
 	/* Geen String meer maar een TextItem */
 	protected TextItem title; // de titel wordt apart bewaard
-	protected Vector<SlideItem> items; // de slide-items worden in een Vector bewaard
+	protected Vector<ViewableSlideItem> items; // de slide-items worden in een Vector bewaard
 
 	public Slide() {
-		items = new Vector<SlideItem>();
+		items = new Vector<ViewableSlideItem>();
 	}
 
 	// Voeg een SlideItem toe
-	public void append(SlideItem anItem) {
+	public void append(ViewableSlideItem anItem) {
 		items.addElement(anItem);
 	}
 
@@ -47,12 +47,12 @@ public class Slide {
 	}
 
 	// geef het betreffende SlideItem
-	public SlideItem getSlideItem(int number) {
-		return (SlideItem)items.elementAt(number);
+	public ViewableSlideItem getSlideItem(int number) {
+		return (ViewableSlideItem)items.elementAt(number);
 	}
 
 	// geef alle SlideItems in een Vector
-	public Vector<SlideItem> getSlideItems() {
+	public Vector<ViewableSlideItem> getSlideItems() {
 		return items;
 	}
 
@@ -65,12 +65,12 @@ public class Slide {
 		float scale = getScale(area);
 	    int y = area.y;
 		/* De titel hoeft niet meer apart behandeld te worden */
-	    SlideItem slideItem = this.title;
+	    ViewableSlideItem slideItem = this.title;
 	    Style style = Style.getStyle(slideItem.getLevel());
 	    slideItem.draw(area.x, y, scale, g, style, view);
 	    y += slideItem.getBoundingBox(g, view, scale, style).height;
 	    for (int number=0; number<getSize(); number++) {
-	      slideItem = (SlideItem)getSlideItems().elementAt(number);
+	      slideItem = (ViewableSlideItem)getSlideItems().elementAt(number);
 	      style = Style.getStyle(slideItem.getLevel());
 	      slideItem.draw(area.x, y, scale, g, style, view);
 	      y += slideItem.getBoundingBox(g, view, scale, style).height;

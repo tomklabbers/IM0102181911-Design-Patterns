@@ -13,14 +13,14 @@ import java.awt.image.ImageObserver;
  * @version 1.6 2014/05/16 Sylvia Stuurman
 */
 
-public abstract class SlideItem {
+public abstract class ViewableSlideItem {
 	private int level = 0; // het level van het slideitem
 
-	public SlideItem(int lev) {
+	public ViewableSlideItem(int lev) {
 		level = lev;
 	}
 
-	public SlideItem() {
+	public ViewableSlideItem() {
 		this(0);
 	}
 
