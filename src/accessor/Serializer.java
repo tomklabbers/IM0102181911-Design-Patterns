@@ -7,5 +7,5 @@ import interfaces.Presentation;
 public interface Serializer {
 	public String serialize(Presentation presentation);
 	
-	public Presentation unserialize(InputStream serializedText, Presentation presentation);
+	public void unserialize(InputStream serializedText, Presentation presentation);
 }

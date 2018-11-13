@@ -5,5 +5,7 @@ public interface Presentation {
 	
 	public String getTitle();
 	
-	public void setSlide(Slide slide);
+	public void addSlide(Slide slide);
+	
+	public void debug();
 }

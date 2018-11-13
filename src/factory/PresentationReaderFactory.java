@@ -9,7 +9,7 @@ import accessor.PresentationReader;
 import accessor.Serializer;
 import accessor.XMLSerializer;
 
-public class ReaderFactory {
+public class PresentationReaderFactory {
 	
 	public static PresentationReader createReader(String path) {
 		if(path != null && !path.isEmpty() ) {

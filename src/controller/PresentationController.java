@@ -29,5 +29,6 @@ public class PresentationController {
 	public void setModel(Presentation model) {
 		this.model = model;
 		this.view.setTitle(this.model.getTitle());
+		this.model.debug();
 	}
 }

@@ -2,7 +2,7 @@ import view.PresentationView;
 import accessor.PresentationReader;
 import controller.PresentationController;
 import factory.PresentationFactory;
-import factory.ReaderFactory;
+import factory.PresentationReaderFactory;
 import interfaces.Presentation;
 
 /** JabberPoint Main Programma
@@ -37,10 +37,10 @@ public class JabberPoint {
 			presentationPath = argv[0];
 		}
 		else {
-			presentationPath = null; // Demo Presentation will be loaded
+			presentationPath = "/Users/Tom/CloudStation/OpenUniversiteit/2018 Master Software Engineering/Design Patterns/Eind opdracht/Repository/test.xml"; // Demo Presentation will be loaded
 		}
 		
-		reader = ReaderFactory.createReader(presentationPath);
+		reader = PresentationReaderFactory.createReader(presentationPath);
 		model = PresentationFactory.createPresentation(reader);
 		
 		mainWindowCtrl = new PresentationController();
