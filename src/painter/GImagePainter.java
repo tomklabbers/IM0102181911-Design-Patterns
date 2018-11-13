@@ -10,7 +10,6 @@ class GImagePainter extends GraphicsPainter {
 	}
 	@Override
 	public BoundingBox draw(SlideItem item, BoundingBox area) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
