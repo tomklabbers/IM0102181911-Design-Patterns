@@ -1,10 +1,14 @@
 import java.awt.Rectangle;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+
+import model.SlideItem;
+import interfaces.SlideItemImageItem;
 
 import java.io.IOException;
 
@@ -20,7 +24,7 @@ import java.io.IOException;
  * @version 1.6 2014/05/16 Sylvia Stuurman
 */
 
-public class BitmapItem extends ViewableSlideItem {
+public class BitmapItem extends SlideItem implements SlideItemImageItem {
   private BufferedImage bufferedImage;
   private String imageName;
   
@@ -48,6 +52,11 @@ public class BitmapItem extends ViewableSlideItem {
 	public String getName() {
 		return imageName;
 	}
+	
+	@Override
+		public String getType() {
+			return "image";
+		}
 
 // geef de bounding box van de afbeelding
 	public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
@@ -67,5 +76,10 @@ public class BitmapItem extends ViewableSlideItem {
 
 	public String toString() {
 		return "BitmapItem[" + getLevel() + "," + imageName + "]";
+	}
+	
+	@Override
+	public Image getImage() {
+		return bufferedImage;
 	}
 }

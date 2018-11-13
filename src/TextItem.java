@@ -10,6 +10,10 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 import java.text.AttributedString;
 import java.util.List;
+
+import model.SlideItem;
+import interfaces.SlideItemTextValue;
+
 import java.util.Iterator;
 import java.util.ArrayList;
 
@@ -24,7 +28,7 @@ import java.util.ArrayList;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class TextItem extends ViewableSlideItem {
+public class TextItem extends SlideItem implements SlideItemTextValue{
 	private String text;
 	
 	private static final String EMPTYTEXT = "No Text Given";
@@ -35,6 +39,10 @@ public class TextItem extends ViewableSlideItem {
 		text = string;
 	}
 
+	@Override
+	public String getType() {
+		return "text";
+	}
 // een leeg textitem
 	public TextItem() {
 		this(0, EMPTYTEXT);
@@ -108,5 +116,9 @@ public class TextItem extends ViewableSlideItem {
 
 	public String toString() {
 		return "TextItem[" + getLevel()+","+getText()+"]";
+	}
+	@Override
+	public String getValue() {
+		return text;
 	}
 }

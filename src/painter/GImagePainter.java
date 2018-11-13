@@ -1,10 +1,10 @@
 package painter;
 
-import interfaces.SlideItem;
+import model.SlideItem;
 import java.awt.Graphics;
 import javafx.geometry.BoundingBox;
 
-public class GImagePainter extends GraphicsPainter {
+class GImagePainter extends GraphicsPainter {
 	public GImagePainter(Graphics canvas) {
 		super(canvas);
 	}

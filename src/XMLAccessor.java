@@ -9,6 +9,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
+
+import model.SlideItem;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -126,9 +129,9 @@ public class XMLAccessor extends Accessor {
 			Slide slide = presentation.getSlide(slideNumber);
 			out.println("<slide>");
 			out.println("<title>" + slide.getTitle() + "</title>");
-			Vector<ViewableSlideItem> slideItems = slide.getSlideItems();
+			Vector<SlideItem> slideItems = slide.getSlideItems();
 			for (int itemNumber = 0; itemNumber<slideItems.size(); itemNumber++) {
-				ViewableSlideItem slideItem = (ViewableSlideItem) slideItems.elementAt(itemNumber);
+				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemNumber);
 				out.print("<item kind="); 
 				if (slideItem instanceof TextItem) {
 					out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");

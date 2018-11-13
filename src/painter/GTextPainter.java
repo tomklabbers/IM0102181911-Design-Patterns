@@ -1,10 +1,10 @@
 package painter;
 
-import interfaces.SlideItem;
+import model.SlideItem;
 import javafx.geometry.BoundingBox;
 import java.awt.Graphics;
 
-public class GTextPainter extends GraphicsPainter {	
+class GTextPainter extends GraphicsPainter {	
 	public GTextPainter(Graphics canvas) {
 		super(canvas);
 	}

@@ -2,7 +2,7 @@ package painter;
 
 import java.awt.Graphics;
 
-import interfaces.SlideItem;
+import model.SlideItem;
 import javafx.geometry.BoundingBox;
 
 abstract class GraphicsPainter  implements SlidePainter {

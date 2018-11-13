@@ -1,6 +1,8 @@
+package model;
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
+import styles.SlideItemStyle;
 
 /** <p>De abstracte klasse voor een item op een Slide<p>
  * <p>Alle SlideItems hebben tekenfunctionaliteit.</p>
@@ -13,14 +15,15 @@ import java.awt.image.ImageObserver;
  * @version 1.6 2014/05/16 Sylvia Stuurman
 */
 
-public abstract class ViewableSlideItem {
+public abstract class SlideItem {
 	private int level = 0; // het level van het slideitem
+	private SlideItemStyle style;
 
-	public ViewableSlideItem(int lev) {
+	public SlideItem(int lev) {
 		level = lev;
 	}
 
-	public ViewableSlideItem() {
+	public SlideItem() {
 		this(0);
 	}
 
@@ -28,12 +31,14 @@ public abstract class ViewableSlideItem {
 	public int getLevel() {
 		return level;
 	}
-
-// Geef de bounding box
-	public abstract Rectangle getBoundingBox(Graphics g, 
-			ImageObserver observer, float scale, Style style);
-
-// teken het item
-	public abstract void draw(int x, int y, float scale, 
-			Graphics g, Style style, ImageObserver observer);
+	
+	public abstract String getType();
+	
+	public SlideItemStyle getStyle() {
+		return this.style;
+	}
+	
+	public void setStyle(SlideItemStyle style) {
+		this.style = style;
+	}
 }
