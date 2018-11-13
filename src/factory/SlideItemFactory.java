@@ -1,6 +1,8 @@
 package factory;
 
-import interfaces.SlideItem;
+
+import model.BitmapItem;
+import model.SlideItem;
 import model.TextItem;
 
 public class SlideItemFactory {
@@ -14,15 +16,11 @@ public class SlideItemFactory {
 		SlideItem item = null;
 		
 		if(TYPE_TEXT.equals(type)) {
-			item = new TextItem();
+			item = new TextItem(level);
 			
 		}
 		else if(TYPE_IMAGE.equals(type)) {
-			item = new TextItem();
-		}
-		
-		if(item != null) {
-			item.setLevel(level);
+			item = new BitmapItem(level);
 		}
 		
 		

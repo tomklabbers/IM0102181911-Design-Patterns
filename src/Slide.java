@@ -4,6 +4,7 @@ import java.awt.image.ImageObserver;
 import java.util.Vector;
 
 import model.SlideItem;
+import model.TextItem;
 
 /** <p>Een slide. Deze klasse heeft tekenfunctionaliteit.</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
@@ -39,7 +40,7 @@ public class Slide {
 
 	// verander de titel van de slide
 	public void setTitle(String newTitle) {
-		/* Creëer nu een TextItem op basis van de nieuwe titel */
+		/* Creï¿½er nu een TextItem op basis van de nieuwe titel */
 		title = new TextItem(0, newTitle);
 	}
 

@@ -19,7 +19,7 @@ import factory.SlideFactory;
 import factory.SlideItemFactory;
 import interfaces.Presentation;
 import interfaces.Slide;
-import interfaces.SlideItem;
+import model.SlideItem;
 
 public class XMLSerializer implements Serializer{
 	

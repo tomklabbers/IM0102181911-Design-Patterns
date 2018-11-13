@@ -18,6 +18,7 @@ import styles.SlideItemStyle;
 public abstract class SlideItem {
 	private int level = 0; // het level van het slideitem
 	private SlideItemStyle style;
+	private String value;
 
 	public SlideItem(int lev) {
 		level = lev;
@@ -40,5 +41,13 @@ public abstract class SlideItem {
 	
 	public void setStyle(SlideItemStyle style) {
 		this.style = style;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
+	public String getRawValue() {
+		return value;
 	}
 }

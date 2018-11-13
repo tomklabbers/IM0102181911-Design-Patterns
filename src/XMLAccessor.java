@@ -10,7 +10,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import model.BitmapItem;
 import model.SlideItem;
+import model.TextItem;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

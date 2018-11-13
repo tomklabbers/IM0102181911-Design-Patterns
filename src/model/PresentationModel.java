@@ -36,7 +36,7 @@ public class PresentationModel implements Presentation {
 			
 			for(j = 0; j<items.size(); j++) {
 				item = items.get(j);
-				System.out.println("-- Item: "+item.getType()+" level: "+item.getLevel()+" value: "+item.getValue());
+				System.out.println("-- Item: "+item.getType()+" level: "+item.getLevel()+" value: "+item.getRawValue());
 			}
 		}
 	}

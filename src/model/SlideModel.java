@@ -3,7 +3,7 @@ package model;
 import java.util.Vector;
 
 import interfaces.Slide;
-import interfaces.SlideItem;
+import model.SlideItem;
 
 public class SlideModel implements Slide {
 	private String title;
