@@ -1,9 +1,9 @@
 import view.PresentationView;
+import accessor.PresentationReader;
 import controller.PresentationController;
 import factory.PresentationFactory;
 import factory.ReaderFactory;
 import interfaces.Presentation;
-import interfaces.Reader;
 
 /** JabberPoint Main Programma
  * <p>This program is distributed under the terms of the accompanying
@@ -31,8 +31,7 @@ public class JabberPoint {
 		String presentationPath;
 		PresentationController mainWindowCtrl;
 		Presentation model;
-		Reader reader;
-		
+		PresentationReader reader;
 		
 		if (argv.length > 0) { 
 			presentationPath = argv[0];

@@ -3,19 +3,15 @@ package factory;
 
 
 import model.PresentationModel;
+import accessor.PresentationReader;
 import interfaces.Presentation;
-import interfaces.Reader;
 
 public class PresentationFactory {
 	
-	public static Presentation createPresentation() {
-		return new PresentationModel();
-	}
-	
-	public static Presentation createPresentation(Reader reader) {
-		reader.load();
+	public static Presentation createPresentation(PresentationReader reader) {
 		Presentation p = new PresentationModel();
-		p.setTitle(reader.getTitle());
+		reader.load(p);
+		
 		return p;
 	}
 }

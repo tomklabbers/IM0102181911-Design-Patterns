@@ -11,8 +11,7 @@ public class PresentationController {
 	
 	private Presentation model;
 	
-	public PresentationController() {
-	}
+	public PresentationController() {}
 	
 	public void setView(PresentationView view) {
 		this.view = view;
