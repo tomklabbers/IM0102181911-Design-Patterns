@@ -33,13 +33,13 @@ class GTextPainter extends GraphicsPainter {
 	
 	private List<TextLayout> getLayouts(AttributedString attStr, Graphics g, FontStyle s, BoundingBox area) {
 		List<TextLayout> layouts = new ArrayList<TextLayout>(); 
-    	Graphics2D g2d = (Graphics2D) g;
-    	FontRenderContext frc = g2d.getFontRenderContext();
-    	LineBreakMeasurer measurer = new LineBreakMeasurer(attStr.getIterator(), frc);
-    	while (measurer.getPosition() < attStr().length()) {
-    		TextLayout layout = measurer.nextLayout(area.getWidth());
-    		layouts.add(layout);
-    	}
+//    	Graphics2D g2d = (Graphics2D) g;
+//    	FontRenderContext frc = g2d.getFontRenderContext();
+//    	LineBreakMeasurer measurer = new LineBreakMeasurer(attStr.getIterator(), frc);
+////    	while (measurer.getPosition() < attStr.length()) {
+//    		TextLayout layout = measurer.nextLayout(area.getWidth());
+//    		layouts.add(layout);
+//    	}
     	return layouts;
 	}	
 	
