@@ -1,8 +1,10 @@
 package painter;
 
-import javafx.geometry.BoundingBox;
+import java.awt.Rectangle;
+import java.awt.geom.Line2D;
+
 import model.SlideItem;
 
 public interface SlidePainter {
-	public BoundingBox draw(SlideItem item, BoundingBox area);
+	abstract public Rectangle draw(SlideItem item, Line2D location);
 }

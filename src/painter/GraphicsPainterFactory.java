@@ -1,12 +1,17 @@
 package painter;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 class GraphicsPainterFactory implements PainterFactory {
 	private Graphics canvas;
+	private Rectangle drawArea;
+	private float scale;
 	
-	public GraphicsPainterFactory(Graphics canvas) {
+	public GraphicsPainterFactory(Graphics canvas, Rectangle drawArea) {
 		this.canvas = canvas;
+		this.drawArea = drawArea;
+		
 	}
 	
 	@Override

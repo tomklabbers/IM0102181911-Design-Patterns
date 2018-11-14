@@ -1,14 +1,17 @@
 package painter;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 
 import model.SlideItem;
-import javafx.geometry.BoundingBox;
 
 abstract class GraphicsPainter  implements SlidePainter {
 	private Graphics canvas;
+	private float scale;
 	
-	public GraphicsPainter(Graphics canvas) {
+	public GraphicsPainter(Graphics canvas, float scale) {
 		this.canvas = canvas;
 	}
 	
@@ -16,7 +19,11 @@ abstract class GraphicsPainter  implements SlidePainter {
 		return this.canvas;
 	}
 	
+	public float getScale() {
+		return scale;
+	}
+	
 	@Override
-	abstract public BoundingBox draw(SlideItem item, BoundingBox area);
+	abstract public Rectangle draw(SlideItem item, Line2D location);
 
 }
