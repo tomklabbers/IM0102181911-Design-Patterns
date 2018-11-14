@@ -1,5 +1,8 @@
 import view.PresentationView;
 import accessor.PresentationReader;
+import controller.KeyController;
+import controller.MenuController;
+import controller.MouseController;
 import controller.PresentationController;
 import factory.PresentationFactory;
 import factory.PresentationReaderFactory;
@@ -26,12 +29,20 @@ public class JabberPoint {
 
 	/** Het Main Programma */
 	public static void main(String argv[]) {
-		
-		//Style.createStyles();
 		String presentationPath;
 		PresentationController mainWindowCtrl;
-		Presentation model;
-		PresentationReader reader;
+		PresentationView mainView;
+		MenuController menuCtrl; 
+		
+		mainWindowCtrl 	= new PresentationController();
+		menuCtrl 		= new MenuController(mainWindowCtrl);
+		mainView 		= new PresentationView();
+		
+		mainView.addMouseListener(new MouseController(mainWindowCtrl));
+		mainView.addKeyListener(new KeyController(mainWindowCtrl));
+		mainView.setMenuBar(menuCtrl);
+		
+		mainWindowCtrl.setView(mainView);
 		
 		if (argv.length > 0) { 
 			presentationPath = argv[0];
@@ -40,11 +51,6 @@ public class JabberPoint {
 			presentationPath = ""; // Demo Presentation will be loaded
 		}
 		
-		reader = PresentationReaderFactory.createReader(presentationPath);
-		model = PresentationFactory.createPresentation(reader);
-		
-		mainWindowCtrl = new PresentationController();
-		mainWindowCtrl.setView(new PresentationView());
-		mainWindowCtrl.setModel(model);
+		mainWindowCtrl.open(presentationPath);
 	}
 }

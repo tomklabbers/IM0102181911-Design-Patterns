@@ -5,7 +5,7 @@ import java.util.Vector;
 import interfaces.*;
 
 public class PresentationModel implements Presentation {
-	String title;
+	String title = "untitled";
 	
 	Vector<Slide> slides;
 	
@@ -39,5 +39,29 @@ public class PresentationModel implements Presentation {
 				System.out.println("-- Item: "+item.getType()+" level: "+item.getLevel()+" value: "+item.getRawValue());
 			}
 		}
+	}
+
+	@Override
+	public void nextSlide() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void prevSlide() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void goToSlide(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getCurrentSlide() {
+		// TODO Auto-generated method stub
+		
 	}
 }

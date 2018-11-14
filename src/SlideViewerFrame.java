@@ -3,6 +3,9 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 import javax.swing.JFrame;
 
+import controller.KeyController;
+import controller.MenuController;
+
 /**
  * <p>Het applicatiewindow voor een slideviewcomponent</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman

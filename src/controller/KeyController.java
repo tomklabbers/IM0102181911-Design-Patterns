@@ -1,4 +1,8 @@
+package controller;
 import java.awt.event.KeyEvent;
+
+import interfaces.Presentation;
+
 import java.awt.event.KeyAdapter;
 
 /** <p>This is the KeyController (KeyListener)</p>
@@ -12,10 +16,10 @@ import java.awt.event.KeyAdapter;
 */
 
 public class KeyController extends KeyAdapter {
-	private Presentation presentation; // Er worden commando's gegeven aan de presentatie
-
-	public KeyController(Presentation p) {
-		presentation = p;
+	PresentationController controller;
+	
+	public KeyController(PresentationController ctrl) {
+		controller = ctrl;
 	}
 
 	public void keyPressed(KeyEvent keyEvent) {
@@ -24,15 +28,18 @@ public class KeyController extends KeyAdapter {
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_ENTER:
 			case '+':
-				presentation.nextSlide();
+				System.out.println("Key + :: Next Slide");
+				controller.nextSlide();
 				break;
 			case KeyEvent.VK_PAGE_UP:
 			case KeyEvent.VK_UP:
 			case '-':
-				presentation.prevSlide();
+				System.out.println("Key - :: Prev Slide");
+				controller.prevSlide();
 				break;
 			case 'q':
 			case 'Q':
+				System.out.println("Key Q :: Quit");
 				System.exit(0);
 				break; // wordt nooit bereikt als het goed is
 			default:
