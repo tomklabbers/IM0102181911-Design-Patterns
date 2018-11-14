@@ -37,7 +37,7 @@ public class JabberPoint {
 			presentationPath = argv[0];
 		}
 		else {
-			presentationPath = "/Users/Tom/CloudStation/OpenUniversiteit/2018 Master Software Engineering/Design Patterns/Eind opdracht/Repository/test.xml"; // Demo Presentation will be loaded
+			presentationPath = ""; // Demo Presentation will be loaded
 		}
 		
 		reader = PresentationReaderFactory.createReader(presentationPath);
