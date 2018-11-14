@@ -6,13 +6,17 @@ import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import accessor.PresentationReader;
-import factory.PresentationReaderFactory;
+import factory.AccessorFactory;
 import interfaces.Presentation;
+import view.AboutView;
 
 
 /** <p>De controller voor het menu</p>
@@ -27,9 +31,11 @@ import interfaces.Presentation;
 public class MenuController extends MenuBar {
 	
 	private PresentationController controller;
+	final JFileChooser fc;
 	
 	private static final long serialVersionUID = 227L;
 	
+	protected static final String DEBUG = "Debug";
 	protected static final String ABOUT = "About";
 	protected static final String FILE = "File";
 	protected static final String EXIT = "Exit";
@@ -52,6 +58,9 @@ public class MenuController extends MenuBar {
 
 	public MenuController(PresentationController ctrl) {
 		controller = ctrl;
+		fc = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Jabber Files", "xml", "json");
+		fc.setFileFilter(filter);
 				
 		MenuItem menuItem;
 		
@@ -62,7 +71,15 @@ public class MenuController extends MenuBar {
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				System.out.println("File :: Open");
-				controller.open(TESTFILE);
+				int returnVal = fc.showOpenDialog(controller.getView());
+
+		        if (returnVal == JFileChooser.APPROVE_OPTION) {
+		            File file = fc.getSelectedFile();
+
+		            controller.open(file.getPath());
+		        } else {
+		            System.out.println("Open command cancelled by user.");
+		        }
 			}
 		} );
 		
@@ -78,13 +95,16 @@ public class MenuController extends MenuBar {
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("File :: Save");
-//				Accessor xmlAccessor = new XMLAccessor();
-//				try {
-//					xmlAccessor.saveFile(presentation, SAVEFILE);
-//				} catch (IOException exc) {
-//					JOptionPane.showMessageDialog(parent, IOEX + exc, 
-//							SAVEERR, JOptionPane.ERROR_MESSAGE);
-//				}
+				int returnVal = fc.showSaveDialog(controller.getView());
+
+		        if (returnVal == JFileChooser.APPROVE_OPTION) {
+		            File file = fc.getSelectedFile();
+
+		            controller.save(file.getPath());
+		        } else {
+		            System.out.println("Save command cancelled by user.");
+		        }
+				
 			}
 		});
 		
@@ -136,7 +156,14 @@ public class MenuController extends MenuBar {
 		helpMenu.add(menuItem = mkMenuItem(ABOUT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				//AboutBox.show(parent);
+				AboutView.show(controller.getView());
+			}
+		});
+		
+		helpMenu.add(menuItem = mkMenuItem(DEBUG));
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				controller.debug();
 			}
 		});
 		setHelpMenu(helpMenu);// nodig for portability (Motif, etc.).

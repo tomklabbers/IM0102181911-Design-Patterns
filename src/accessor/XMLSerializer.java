@@ -1,8 +1,11 @@
 package accessor;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.Vector;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -19,7 +22,9 @@ import factory.SlideFactory;
 import factory.SlideItemFactory;
 import interfaces.Presentation;
 import interfaces.Slide;
+import model.BitmapItem;
 import model.SlideItem;
+import model.TextItem;
 
 public class XMLSerializer implements Serializer{
 	
@@ -62,19 +67,13 @@ public class XMLSerializer implements Serializer{
     }
 
 	@Override
-	public String serialize(Presentation p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void unserialize(InputStream serializedText, Presentation presentation) {
+	public void unserialize(InputStream in, Presentation presentation) {
 		int slideIndex, itemIndex;
 		try {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder(); 
 			
 			// Create a DOM object to query for elements
-			dom = builder.parse(serializedText).getDocumentElement();
+			dom = builder.parse(in).getDocumentElement();
 			
 			presentation.setTitle(getElementContent(dom, SHOWTITLE));
 
@@ -122,6 +121,46 @@ public class XMLSerializer implements Serializer{
 		catch (ParserConfigurationException pcx) {
 			System.err.println("Parser Configuration Exception");
 		}
+	}
+	
+	@Override
+	public void serialize(PrintWriter out, Presentation p) {
+		out.println("<?xml version=\"1.0\"?>");
+		out.println("<!DOCTYPE presentation SYSTEM \"jabberpoint.dtd\">");
+		out.println("<presentation>");
+		out.print("<showtitle>");
+		out.print(p.getTitle());
+		out.println("</showtitle>");
+		
+		Vector<Slide> slides = p.getSlides();
+		
+		for (int slideIndex=0; slideIndex < slides.size(); slideIndex++) {
+			
+			Slide slide = slides.get(slideIndex);
+			out.println("<slide>");
+			out.println("<title>" + slide.getTitle() + "</title>");
+			Vector<SlideItem> slideItems = slide.getItems();
+			
+			for (int itemIndex = 0; itemIndex < slideItems.size(); itemIndex++) {
+				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemIndex);
+				out.print("<item kind="); 
+				if (slideItem instanceof TextItem) {
+					out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");
+					out.print( ( (TextItem) slideItem).getRawValue());
+				}
+				else if (slideItem instanceof BitmapItem) {
+					out.print("\"image\" level=\"" + slideItem.getLevel() + "\">");
+					out.print( ( (BitmapItem) slideItem).getRawValue());
+				}
+				else {
+					System.out.println("Ignoring " + slideItem);
+				}
+				
+				out.println("</item>");
+			}
+			out.println("</slide>");
+		}
+		out.println("</presentation>");
 	}
 
 }

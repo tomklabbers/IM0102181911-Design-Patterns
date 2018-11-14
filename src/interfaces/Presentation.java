@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.Vector;
+
 public interface Presentation {
 	public void setTitle(String title);
 	
@@ -7,13 +9,13 @@ public interface Presentation {
 	
 	public void addSlide(Slide slide);
 	
-	public void debug();
-	
 	public void nextSlide();
 	
 	public void prevSlide();
 	
 	public void goToSlide(int index);
 	
-	public void getCurrentSlide();
+	public Slide getCurrentSlide();
+	
+	public Vector<Slide> getSlides();
 }

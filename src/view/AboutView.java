@@ -1,3 +1,4 @@
+package view;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class AboutBox {
+public class AboutView {
 	public static void show(Frame parent) {
 		JOptionPane.showMessageDialog(parent,
 				"JabberPoint is a primitive slide-show program in Java(tm). It\n" +

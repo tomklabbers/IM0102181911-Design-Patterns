@@ -1,11 +1,13 @@
 package controller;
 
+import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import accessor.PresentationReader;
+import accessor.PresentationWriter;
 import factory.PresentationFactory;
-import factory.PresentationReaderFactory;
+import factory.AccessorFactory;
 import view.PresentationView;
 import interfaces.*;
 
@@ -29,32 +31,41 @@ public class PresentationController {
 		this.view.setVisible(true);
 	}
 	
+	private void initView() {
+		// TODO check if view is set, else quit program
+		
+		view.setTitle(model.getTitle());
+	}
+	
+	public Frame getView() {
+		return view;
+	}
+	
 	public void setModel(Presentation model) {
 		this.model = model;
 	}
 	
 	public void open(String path) {
-		PresentationReader reader = PresentationReaderFactory.createReader(path);
+		PresentationReader reader = AccessorFactory.createReader(path);
 		model = PresentationFactory.createPresentation(reader);
 		
 		initView();
-		
-		// TODO remove debug
-		model.debug();
 	}
 	
 	public void open() {
 		model = PresentationFactory.createPresentation();
 		
 		initView();
-		
-		model.debug();
 	}
 	
-	private void initView() {
-		// TODO check if view is set, else quit program
-		
-		view.setTitle(model.getTitle());
+	public void save(String path) {
+		PresentationWriter writer = AccessorFactory.createWriter(path);
+		writer.save(model);
+	}
+	
+	public void debug() {
+		PresentationWriter writer = AccessorFactory.createWriter(null);
+		writer.save(model);
 	}
 	
 	public void nextSlide() {

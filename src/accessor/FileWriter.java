@@ -1,6 +1,6 @@
 package accessor;
 
-public abstract class FileReader implements PresentationReader, Accessor {
+public abstract class FileWriter implements PresentationWriter, Accessor {
 	private Serializer serializer;
 	
 	private String path;

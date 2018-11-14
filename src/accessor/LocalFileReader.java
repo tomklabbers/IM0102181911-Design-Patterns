@@ -11,14 +11,6 @@ import interfaces.Slide;
 
 public class LocalFileReader extends FileReader {
 	
-	public Vector<Slide> getSlides(){
-		return null;
-	}
-	
-	public String getTitle() {
-		return "LocalFileReader";
-	}
-	
 	public void load(Presentation p) {
 		File file = new File(getPath());
 		

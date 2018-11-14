@@ -5,7 +5,7 @@ import controller.MenuController;
 import controller.MouseController;
 import controller.PresentationController;
 import factory.PresentationFactory;
-import factory.PresentationReaderFactory;
+import factory.AccessorFactory;
 import interfaces.Presentation;
 
 /** JabberPoint Main Programma
