@@ -16,7 +16,9 @@ public class StyleFactory {
 			}
 			else {
 				return new ImageItemStyle(level);
-			}			
+			}
+		default:
+			return null;
 		}
 	}
 }
