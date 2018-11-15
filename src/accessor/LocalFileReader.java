@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Vector;
-
 import interfaces.Presentation;
-import interfaces.Slide;
 
 public class LocalFileReader extends FileReader {
 	

@@ -1,8 +1,6 @@
 package controller;
+
 import java.awt.event.KeyEvent;
-
-import interfaces.Presentation;
-
 import java.awt.event.KeyAdapter;
 
 /** <p>This is the KeyController (KeyListener)</p>

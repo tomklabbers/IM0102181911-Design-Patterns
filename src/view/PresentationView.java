@@ -1,7 +1,5 @@
 package view;
 import java.awt.Dimension;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowAdapter;
 import javax.swing.JFrame;
 
 public class PresentationView  extends JFrame {
