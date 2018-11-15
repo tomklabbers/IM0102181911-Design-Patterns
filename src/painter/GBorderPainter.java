@@ -1,18 +1,34 @@
 package painter;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Stroke;
+import java.awt.geom.Line2D;
 
 import model.SlideItem;
-import javafx.geometry.BoundingBox;
+import styles.BorderStyle;
 
 class GBorderPainter extends GraphicsPainter {
-	public GBorderPainter(Graphics canvas) {
-		super(canvas);
+	public GBorderPainter(Graphics canvas, float scale) {
+		super(canvas, scale);
 	}
 	
 	@Override
-	public BoundingBox draw(SlideItem item, BoundingBox area) {
-		return null;
+	public Rectangle draw(SlideItem item, Rectangle location) {
+		if (item.getStyle() instanceof BorderStyle) {
+			BorderStyle borderstyle = (BorderStyle) item.getStyle();
+			Graphics2D g2d = (Graphics2D)getCanvas();
+			Stroke stroke = new BasicStroke(borderstyle.getBorderStrokeWidth());
+			g2d.setStroke(stroke);
+			getCanvas().drawRect(location.x,location.y,location.width, location.height);
+			g2d.setStroke(null);
+			return new Rectangle(location);
+		}
+		else {
+			return null;
+		}
+		
 	}
-
 }

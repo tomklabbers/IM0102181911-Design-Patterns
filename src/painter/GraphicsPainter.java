@@ -13,6 +13,7 @@ abstract class GraphicsPainter  implements SlidePainter {
 	
 	public GraphicsPainter(Graphics canvas, float scale) {
 		this.canvas = canvas;
+		this.scale = scale;
 	}
 	
 	public Graphics getCanvas() {
@@ -24,6 +25,6 @@ abstract class GraphicsPainter  implements SlidePainter {
 	}
 	
 	@Override
-	abstract public Rectangle draw(SlideItem item, Line2D location);
+	abstract public Rectangle draw(SlideItem item, Rectangle location);
 
 }

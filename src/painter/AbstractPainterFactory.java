@@ -1,10 +1,11 @@
 package painter;
 
 import java.awt.Graphics;
-import java.awt.geom.Point2D;
+import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
 
 public final class AbstractPainterFactory {
-	public static PainterFactory GraphicsPainter(Graphics canvas, Point2D area){
-		return new GraphicsPainterFactory(canvas);
+	public static PainterFactory GraphicsPainter(Graphics canvas, Rectangle drawArea, ImageObserver observer){
+		return new GraphicsPainterFactory(canvas, drawArea, observer);
 	}
 }

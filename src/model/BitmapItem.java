@@ -8,7 +8,7 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import interfaces.SlideItemImageItem;
+import interfaces.SlideItemImageValue;
 
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ import java.io.IOException;
  * @version 1.6 2014/05/16 Sylvia Stuurman
 */
 
-public class BitmapItem extends SlideItem implements SlideItemImageItem {
+public class BitmapItem extends SlideItem implements SlideItemImageValue {
   private BufferedImage bufferedImage;
   private String imageName;
   

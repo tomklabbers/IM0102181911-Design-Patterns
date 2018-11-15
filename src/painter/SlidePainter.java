@@ -6,5 +6,5 @@ import java.awt.geom.Line2D;
 import model.SlideItem;
 
 public interface SlidePainter {
-	abstract public Rectangle draw(SlideItem item, Line2D location);
+	abstract public Rectangle draw(SlideItem item, Rectangle location);
 }
