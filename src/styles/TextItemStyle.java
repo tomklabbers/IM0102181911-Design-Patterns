@@ -5,8 +5,16 @@ import java.awt.Font;
 
 public class TextItemStyle extends SlideItemStyle implements FontStyle {
 	private static final String FONTNAME = "Helvetica";
+	private Font font;
+	private int fontsize;
 	public TextItemStyle(int lvl) {
 		super(lvl);
+		if (getLevel() == 0)
+			fontsize = 48;
+		else {
+			fontsize = 32;
+		}		
+		font = new Font(FONTNAME, Font.BOLD, fontsize);
 	}	
 	
 	@Override
@@ -21,22 +29,19 @@ public class TextItemStyle extends SlideItemStyle implements FontStyle {
 	
 	@Override
 	public Font getFont(float scale) {
-		if (getLevel() == 0)
-			return new Font(FONTNAME, Font.BOLD, 20);
-		else {
-			return new Font(FONTNAME, Font.BOLD, 10);
-		}
+		return font.deriveFont(fontsize * scale);
+
 	}@Override
 	
 	public int getSize() {
-		return 0;
+		return fontsize;
 	}
 	
 	@Override
 	public Color getFontColor() {
 		switch (getLevel()) {
 		case 0:
-			return Color.RED;
+			return Color.red;
 		case 1:
 			return Color.blue;
 		default:

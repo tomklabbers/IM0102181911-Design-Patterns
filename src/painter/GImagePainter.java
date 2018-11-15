@@ -19,9 +19,10 @@ class GImagePainter extends GraphicsPainter {
 	public Rectangle draw(SlideItem item, Rectangle location) {
 		if (item instanceof SlideItemImageValue) {
 			SlideItemImageValue value = (SlideItemImageValue) item;
-			Rectangle result = new Rectangle(location.x, location.y, value.getImage().getWidth(observer),value.getImage().getHeight(observer));
-			getCanvas().drawImage(value.getImage(),location.x, location.y,(int) (result.width*getScale()),
-                (int) (result.height*getScale()), observer);
+			Rectangle result = new Rectangle(location.x, location.y, value.getImage().getWidth(observer) ,value.getImage().getHeight(observer));
+			result.width *= getScale();
+			result.height *= getScale();
+			getCanvas().drawImage(value.getImage(),location.x, location.y,(int) (result.width), (int) (result.height), observer);
 			return result;
 		}
 		else {

@@ -22,8 +22,8 @@ class GBorderPainter extends GraphicsPainter {
 			Graphics2D g2d = (Graphics2D)getCanvas();
 			Stroke stroke = new BasicStroke(borderstyle.getBorderStrokeWidth());
 			g2d.setStroke(stroke);
+			g2d.setColor(borderstyle.getBorderColor());
 			getCanvas().drawRect(location.x,location.y,location.width, location.height);
-			g2d.setStroke(null);
 			return new Rectangle(location);
 		}
 		else {

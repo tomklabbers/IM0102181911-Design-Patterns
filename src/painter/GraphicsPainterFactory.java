@@ -15,7 +15,8 @@ class GraphicsPainterFactory implements PainterFactory {
 	public GraphicsPainterFactory(Graphics canvas, Rectangle drawArea, ImageObserver observer) {
 		this.canvas = canvas;
 		this.drawArea = drawArea;
-		this.scale = (float)this.drawArea.width / PresentationView.WIDTH;
+		this.scale = Math.min(((float)drawArea.width) / ((float)PresentationView.WIDTH), ((float)drawArea.height) / ((float)PresentationView.HEIGHT));
+		System.out.println(scale);
 	}
 	
 	@Override

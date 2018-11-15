@@ -27,6 +27,10 @@ public class DemoReader implements PresentationReader {
 		item = SlideItemFactory.createSlideItem("text", 2);
 		item.setValue("Copyright (c) 1996-2000: Ian Darwin");
 		slide.addItem(item);
+		
+		item = SlideItemFactory.createSlideItem("image", 2);
+		item.setValue("serclogo_fc.jpg");
+		slide.addItem(item);		
 
 		item = SlideItemFactory.createSlideItem("text", 2);
 		item.setValue("Copyright (c) 2000-now:");

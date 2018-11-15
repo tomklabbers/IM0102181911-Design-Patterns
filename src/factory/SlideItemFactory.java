@@ -4,6 +4,7 @@ package factory;
 import model.BitmapItem;
 import model.SlideItem;
 import model.TextItem;
+import styles.StyleFactory;
 
 public class SlideItemFactory {
 	
@@ -22,7 +23,7 @@ public class SlideItemFactory {
 		else if(TYPE_IMAGE.equals(type)) {
 			item = new BitmapItem(level);
 		}
-		
+		item.setStyle(StyleFactory.createStyle(type, true, level));
 		
 		return item;
 	}

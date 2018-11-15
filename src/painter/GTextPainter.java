@@ -47,7 +47,7 @@ class GTextPainter extends GraphicsPainter {
 	
 	@Override
 	public Rectangle draw(SlideItem item, Rectangle location) {
-		if (item == null && item instanceof SlideItemTextValue && item.getStyle() instanceof FontStyle) {
+		if (item != null && (item instanceof SlideItemTextValue) && (item.getStyle() instanceof FontStyle)) {
 			SlideItemTextValue value = (SlideItemTextValue) item;
 			FontStyle fontstyle = (FontStyle) item.getStyle();
 			if ( value.getValue() == null || value.getValue().length() == 0) {
@@ -58,6 +58,7 @@ class GTextPainter extends GraphicsPainter {
 //					y + (int) (myStyle.leading * scale));
 			Point pen = location.getBounds().getLocation();
 			Graphics2D g2d = (Graphics2D)getCanvas();
+			g2d.setFont(fontstyle.getFont(getScale()));
 			g2d.setColor(fontstyle.getFontColor());
 			Iterator<TextLayout> it = layouts.iterator();
 			while (it.hasNext()) {
@@ -66,7 +67,7 @@ class GTextPainter extends GraphicsPainter {
 				layout.draw(g2d, pen.x, pen.y);
 				pen.y += layout.getDescent();
 			}
-			return new Rectangle(location.x, location.y, location.width, pen.y);
+			return new Rectangle(location.x, location.y, location.width, pen.y - location.y);
 		}
 		else {
 			return new Rectangle();
