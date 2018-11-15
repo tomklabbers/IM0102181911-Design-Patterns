@@ -16,13 +16,13 @@ public class ImageItemActionStyle extends SlideItemStyle implements BorderStyle{
 	@Override
 	public Color getBorderColor() {
 		// TODO Auto-generated method stub
-		return null;
+		return Color.BLUE;
 	}
 	
 	@Override
 	public int getBorderStrokeWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 5;
 	}
 
 }

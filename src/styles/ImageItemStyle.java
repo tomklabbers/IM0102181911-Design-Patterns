@@ -9,7 +9,7 @@ public class ImageItemStyle extends SlideItemStyle {
 	@Override
 	public int getIndent() {
 		// TODO Auto-generated method stub
-		return 0;
+		return getLevel() * 21;
 	}
 
 }

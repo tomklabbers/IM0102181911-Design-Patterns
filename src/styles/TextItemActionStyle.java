@@ -8,12 +8,6 @@ public class TextItemActionStyle extends SlideItemStyle implements FontStyle, Bo
 	public TextItemActionStyle(int lvl) {
 		super(lvl);
 	}
-
-	@Override
-	public int getIndent() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 	@Override
 	public Font getFont(float scale) {
@@ -28,8 +22,7 @@ public class TextItemActionStyle extends SlideItemStyle implements FontStyle, Bo
 	
 	@Override
 	public Color getFontColor() {
-		// TODO Auto-generated method stub
-		return null;
+		return Color.BLACK;
 	}
 	
 	@Override
