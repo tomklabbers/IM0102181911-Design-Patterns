@@ -10,10 +10,12 @@ import accessor.PresentationWriter;
 import factory.PresentationFactory;
 import factory.AccessorFactory;
 import view.PresentationView;
+import view.SlideView;
 import interfaces.*;
 
 public class PresentationController {
 	private PresentationView view;
+	private SlideView slideView;
 	
 	private Presentation model;
 	
@@ -30,12 +32,14 @@ public class PresentationController {
 		});
 		
 		this.view.setVisible(true);
+		setSlideView(new SlideView(this.view));
 	}
 	
 	private void initView() {
 		// TODO check if view is set, else quit program
 		
 		view.setTitle(model.getTitle());
+		slideView.setSlide(model.getCurrentSlide());
 	}
 	
 	public Frame getView() {
@@ -46,8 +50,8 @@ public class PresentationController {
 		this.model = model;
 	}
 	
-	public void setSlideView(Component slideComponent) {
-		//this.view.removeAll();
+	public void setSlideView(SlideView slideComponent) {
+		this.slideView = slideComponent;
 		this.view.getContentPane().add(slideComponent);
 	}
 	

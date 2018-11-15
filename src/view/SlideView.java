@@ -19,7 +19,7 @@ public class SlideView extends JComponent {
 	private static final long serialVersionUID = 1L;
 	
 	private Frame parentView;
-	
+	private Slide model;
 	public SlideView(Frame parent) {
 		parentView = parent;
 	}
@@ -28,8 +28,15 @@ public class SlideView extends JComponent {
 		return new Dimension(parentView.getWidth(), parentView.getHeight());
 	}
 	
+	public void setSlide(Slide slide) {
+		model = slide;
+		
+		repaint();
+	}
+	
 	public void drawSlide(Slide slide, PainterFactory factory) {
 		int y = 0;
+		System.out.println(slide);
 		for (SlideItem item : slide.getItems()) {
 			SlidePainter painter = null;
 			switch (item.getType()) {
@@ -66,8 +73,12 @@ public class SlideView extends JComponent {
 	}	
 	
 	public void paintComponent(Graphics g) {
-		PainterFactory	factory = AbstractPainterFactory.GraphicsPainter(g, new Rectangle(parentView.getWidth(), parentView.getHeight()), this);  
-//		drawSlide(slide, factory);
+		if(model != null) {
+			System.out.println("Painting");
+			PainterFactory factory = AbstractPainterFactory.GraphicsPainter(g, new Rectangle(parentView.getWidth(), parentView.getHeight()), this);  
+			
+			drawSlide(model, factory);
+		}
 //		g.setColor(Color.BLUE);
 //		g.fillRect(getSize().width/4, getSize().height/4, getSize().width/2, getSize().height/2);
 //		if (presentation.getSlideNumber() < 0 || slide == null) {

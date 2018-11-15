@@ -47,8 +47,8 @@ public class PresentationModel implements Presentation {
 
 	@Override
 	public Slide getCurrentSlide() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO Add logic
+		return slides.firstElement();
 	}
 
 	@Override
