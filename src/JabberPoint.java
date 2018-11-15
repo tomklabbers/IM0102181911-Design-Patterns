@@ -1,4 +1,5 @@
 import view.PresentationView;
+import view.SlideView;
 import accessor.PresentationReader;
 import controller.KeyController;
 import controller.MenuController;
@@ -32,17 +33,22 @@ public class JabberPoint {
 		String presentationPath;
 		PresentationController mainWindowCtrl;
 		PresentationView mainView;
+		SlideView slideView;
 		MenuController menuCtrl; 
 		
 		mainWindowCtrl 	= new PresentationController();
 		menuCtrl 		= new MenuController(mainWindowCtrl);
 		mainView 		= new PresentationView();
+		slideView		= new SlideView(mainView);
 		
+		// temporarily add mousecontroller to mainView. This should
+		// be added to the slide view.
 		mainView.addMouseListener(new MouseController(mainWindowCtrl));
 		mainView.addKeyListener(new KeyController(mainWindowCtrl));
 		mainView.setMenuBar(menuCtrl);
 		
 		mainWindowCtrl.setView(mainView);
+		mainWindowCtrl.setSlideView(slideView);
 		
 		if (argv.length > 0) { 
 			presentationPath = argv[0];

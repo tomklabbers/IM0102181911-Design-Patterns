@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Component;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -43,6 +44,11 @@ public class PresentationController {
 	
 	public void setModel(Presentation model) {
 		this.model = model;
+	}
+	
+	public void setSlideView(Component slideComponent) {
+		//this.view.removeAll();
+		this.view.getContentPane().add(slideComponent);
 	}
 	
 	public void open(String path) {
