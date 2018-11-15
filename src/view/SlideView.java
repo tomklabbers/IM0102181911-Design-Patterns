@@ -3,8 +3,16 @@ package view;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.Color;
 import javax.swing.JComponent;
+
+import interfaces.Slide;
+import model.SlideItem;
+import painter.AbstractPainterFactory;
+import painter.PainterFactory;
+import painter.SlidePainter;
+import styles.BorderStyle;
 
 public class SlideView extends JComponent {
 	
@@ -20,9 +28,48 @@ public class SlideView extends JComponent {
 		return new Dimension(parentView.getWidth(), parentView.getHeight());
 	}
 	
+	public void drawSlide(Slide slide, PainterFactory factory) {
+		int y = 0;
+		for (SlideItem item : slide.getItems()) {
+			SlidePainter painter = null;
+			switch (item.getType()) {
+				case "text":{
+					painter = factory.createTextPainter();
+					break;
+				}
+				case "image":{
+					painter = factory.createImagePainter();
+					break;
+				}
+			}	
+			if (painter == null) {
+				continue;
+			}
+			int x = item.getLevel() * 20;
+			Rectangle location = new Rectangle(x, y, PresentationView.WIDTH - x, 0); 
+			BorderStyle borderStyle = null;
+			if (item.getStyle() instanceof BorderStyle) {
+				borderStyle = (BorderStyle)item.getStyle();
+				location.x += borderStyle.getBorderStrokeWidth();
+				location.width = location.width - (borderStyle.getBorderStrokeWidth() * 2);				
+			}
+			Rectangle result = painter.draw(item, location);
+			if(borderStyle != null) {
+				SlidePainter borderpainter = factory.createBorderPainter();				
+				Rectangle borderLocation = new Rectangle(x,y, PresentationView.WIDTH - x, result.height + borderStyle.getBorderStrokeWidth());
+				result = borderpainter.draw(item, borderLocation);
+			}
+			if (result != null) {
+				y += result.height;
+			}						
+		}
+	}	
+	
 	public void paintComponent(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(getSize().width/4, getSize().height/4, getSize().width/2, getSize().height/2);
+		PainterFactory	factory = AbstractPainterFactory.GraphicsPainter(g, new Rectangle(parentView.getWidth(), parentView.getHeight()), this);  
+//		drawSlide(slide, factory);
+//		g.setColor(Color.BLUE);
+//		g.fillRect(getSize().width/4, getSize().height/4, getSize().width/2, getSize().height/2);
 //		if (presentation.getSlideNumber() < 0 || slide == null) {
 //			return;
 //		}
