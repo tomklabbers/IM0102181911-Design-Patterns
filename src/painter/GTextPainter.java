@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineBreakMeasurer;
 import java.awt.font.TextLayout;
-import java.awt.geom.Line2D;
 import java.awt.font.TextAttribute;
 import java.text.AttributedString;
 import java.util.ArrayList;
@@ -54,8 +53,6 @@ class GTextPainter extends GraphicsPainter {
 				return new Rectangle(0, 0, 0, 20 );
 			}
 			List<TextLayout> layouts = getLayouts(value.getValue(), getCanvas(), fontstyle, location.getBounds().width);
-//			Point pen = new Point(x + (int)(item.getStyle().getIndent() * scale), 
-//					y + (int) (myStyle.leading * scale));
 			Point pen = location.getBounds().getLocation();
 			Graphics2D g2d = (Graphics2D)getCanvas();
 			g2d.setFont(fontstyle.getFont(getScale()));

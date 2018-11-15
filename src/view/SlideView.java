@@ -36,7 +36,7 @@ public class SlideView extends JComponent {
 	
 	public void drawSlide(Slide slide, PainterFactory factory) {
 		int y = 0;
-		System.out.println(slide);
+		System.out.println(slide);	
 		for (SlideItem item : slide.getItems()) {
 			SlidePainter painter = null;
 			switch (item.getType()) {
@@ -63,7 +63,7 @@ public class SlideView extends JComponent {
 			Rectangle result = painter.draw(item, location);
 			if(borderStyle != null) {
 				SlidePainter borderpainter = factory.createBorderPainter();				
-				Rectangle borderLocation = new Rectangle(x,y, PresentationView.WIDTH - x, result.height + borderStyle.getBorderStrokeWidth()*2);
+				Rectangle borderLocation = new Rectangle(x,y, result.width + borderStyle.getBorderStrokeWidth()*2 , result.height + borderStyle.getBorderStrokeWidth()*2);
 				result = borderpainter.draw(item, borderLocation);
 				y += 2;
 			}
@@ -74,13 +74,15 @@ public class SlideView extends JComponent {
 	}	
 	
 	public void paintComponent(Graphics g) {
+		g.setColor(Color.WHITE);		
+		g.fillRect(0,0, getSize().width, getSize().height);		
 		if(model != null) {
 			System.out.println("Painting");
 			PainterFactory factory = AbstractPainterFactory.GraphicsPainter(g, new Rectangle(parentView.getWidth(), parentView.getHeight()), this);  			
 			drawSlide(model, factory);
 		}
-//		g.setColor(Color.BLUE);
-//		g.fillRect(getSize().width/4, getSize().height/4, getSize().width/2, getSize().height/2);
+//		
+//		
 //		if (presentation.getSlideNumber() < 0 || slide == null) {
 //			return;
 //		}
