@@ -22,6 +22,7 @@ public class DemoReader implements PresentationReader {
 		
 		item = SlideItemFactory.createSlideItem("text", 1);
 		item.setValue("Het Java Presentatie Tool");
+		slide.addItem(item);
 		
 		item = SlideItemFactory.createSlideItem("text", 2);
 		item.setValue("Copyright (c) 1996-2000: Ian Darwin");

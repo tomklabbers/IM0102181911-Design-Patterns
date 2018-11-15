@@ -12,4 +12,6 @@ public interface Slide {
 	public void addItem(SlideItem item);
 	
 	public Vector<SlideItem> getItems();
+	
+	public Vector<SlideItem> getRawItems();
 }

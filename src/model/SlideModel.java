@@ -2,11 +2,12 @@ package model;
 
 import java.util.Vector;
 
+import factory.SlideItemFactory;
 import interfaces.Slide;
 import model.SlideItem;
 
 public class SlideModel implements Slide {
-	private String title;
+	private SlideItem title;
 	
 	private Vector<SlideItem> items;
 	
@@ -15,11 +16,12 @@ public class SlideModel implements Slide {
 	}
 	
 	public void setTitle(String title) {
-		this.title = title;
+		this.title = SlideItemFactory.createSlideItem("text", 0);
+		this.title.setValue(title);
 	}
 	
 	public String getTitle() {
-		return title;
+		return title.getRawValue();
 	}
 	
 	public void addItem(SlideItem item) {
@@ -28,6 +30,14 @@ public class SlideModel implements Slide {
 
 	@Override
 	public Vector<SlideItem> getItems() {
+		Vector<SlideItem> tmp = new Vector<SlideItem>(items);
+		tmp.add(0, title);
+		
+		return tmp;
+	}
+
+	@Override
+	public Vector<SlideItem> getRawItems() {
 		return items;
 	}
 }

@@ -135,7 +135,9 @@ public class XMLSerializer implements Serializer{
 			Slide slide = slides.get(slideIndex);
 			out.println("<slide>");
 			out.println("<title>" + slide.getTitle() + "</title>");
-			Vector<SlideItem> slideItems = slide.getItems();
+			
+			// Get the SlideItems without temporarily items.
+			Vector<SlideItem> slideItems = slide.getRawItems();
 			
 			for (int itemIndex = 0; itemIndex < slideItems.size(); itemIndex++) {
 				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemIndex);
