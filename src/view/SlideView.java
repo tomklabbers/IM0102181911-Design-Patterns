@@ -23,7 +23,9 @@ public class SlideView extends JComponent {
 	
 	private Slide model;
 	private Map<Rectangle, SlideItem> itemLookup;
-	public SlideView() {
+	private PresentationView parentView;
+	public SlideView(PresentationView view) {
+		this.parentView = view;
 	}
 	
 	public Dimension getPreferredSize() {
@@ -94,7 +96,7 @@ public class SlideView extends JComponent {
 		
 		if(model != null) {
 			System.out.println("Painting");
-			PainterFactory factory = AbstractPainterFactory.GraphicsPainter(g, new Rectangle(getParent().getWidth(), getParent().getHeight()), this);  			
+			PainterFactory factory = AbstractPainterFactory.GraphicsPainter(g, this, getPreferredSize(), parentView.getDefaultSize());  			
 			drawSlide(model, factory);
 		}
 	}

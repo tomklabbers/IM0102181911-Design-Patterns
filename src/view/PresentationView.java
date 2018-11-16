@@ -15,6 +15,10 @@ public class PresentationView  extends JFrame {
 	
 	public void setupWindow() {
 		setTitle(JABTITLE);
-		setSize(new Dimension(WIDTH, HEIGHT));
+		setSize(getDefaultSize());
+	}
+	
+	public Dimension getDefaultSize() {
+		return new Dimension(WIDTH, HEIGHT);
 	}
 }

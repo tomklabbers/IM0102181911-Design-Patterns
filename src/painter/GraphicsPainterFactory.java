@@ -1,20 +1,17 @@
 package painter;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
-
-import view.PresentationView;
 
 class GraphicsPainterFactory implements PainterFactory {
 	private Graphics canvas;
 	private float scale;
 	private ImageObserver observer;
 	
-	public GraphicsPainterFactory(Graphics canvas, Rectangle drawArea, ImageObserver observer) {
+	public GraphicsPainterFactory(Graphics canvas, ImageObserver observer, Dimension drawArea, Dimension originalArea) {
 		this.canvas = canvas;
-		this.scale = Math.min(((float)drawArea.width) / ((float)PresentationView.WIDTH), ((float)drawArea.height) / ((float)PresentationView.HEIGHT));
-		System.out.println(scale);
+		this.scale = (float) Math.min(drawArea.getWidth() / originalArea.getWidth(), drawArea.getHeight() / originalArea.getHeight());
 	}
 	
 	@Override
