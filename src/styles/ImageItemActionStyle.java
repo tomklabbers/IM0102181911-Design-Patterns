@@ -3,7 +3,8 @@ package styles;
 import java.awt.Color;
 
 public class ImageItemActionStyle extends SlideItemStyle implements BorderStyle{
-
+	private static Color borderColor = Color.BLUE;
+	private static int strokeWidth = 5;
 	public ImageItemActionStyle(int lvl) {
 		super(lvl);
 	}
@@ -15,14 +16,12 @@ public class ImageItemActionStyle extends SlideItemStyle implements BorderStyle{
 	
 	@Override
 	public Color getBorderColor() {
-		// TODO Auto-generated method stub
-		return Color.BLUE;
+		return borderColor;
 	}
 	
 	@Override
 	public int getBorderStrokeWidth() {
-		// TODO Auto-generated method stub
-		return 5;
+		return strokeWidth;
 	}
 
 }

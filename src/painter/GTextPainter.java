@@ -44,6 +44,10 @@ class GTextPainter extends GraphicsPainter {
     	return layouts;
 	}	
 	
+	/**
+	 * Only prints text when the FonStyle and SlideItemTextValue are implemented
+	 * @return Returns rectangle of text dimensions
+	 */
 	@Override
 	public Rectangle draw(SlideItem item, Rectangle location) {
 		if (item != null && (item instanceof SlideItemTextValue) && (item.getStyle() instanceof FontStyle)) {
@@ -58,8 +62,10 @@ class GTextPainter extends GraphicsPainter {
 			g2d.setFont(fontstyle.getFont(getScale()));
 			g2d.setColor(fontstyle.getFontColor());
 			Iterator<TextLayout> it = layouts.iterator();
+			location.width = 0;
 			while (it.hasNext()) {
 				TextLayout layout = it.next();
+				location.width = Math.max(location.width,(int) layout.getBounds().getWidth());
 				pen.y += layout.getAscent();
 				layout.draw(g2d, pen.x, pen.y);
 				pen.y += layout.getDescent();

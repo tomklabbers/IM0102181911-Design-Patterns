@@ -8,13 +8,11 @@ import view.PresentationView;
 
 class GraphicsPainterFactory implements PainterFactory {
 	private Graphics canvas;
-	private Rectangle drawArea;
 	private float scale;
 	private ImageObserver observer;
 	
 	public GraphicsPainterFactory(Graphics canvas, Rectangle drawArea, ImageObserver observer) {
 		this.canvas = canvas;
-		this.drawArea = drawArea;
 		this.scale = Math.min(((float)drawArea.width) / ((float)PresentationView.WIDTH), ((float)drawArea.height) / ((float)PresentationView.HEIGHT));
 		System.out.println(scale);
 	}
@@ -32,5 +30,10 @@ class GraphicsPainterFactory implements PainterFactory {
 	@Override
 	public SlidePainter createBorderPainter() {
 		return new GBorderPainter(canvas, scale);
+	}
+	
+	@Override
+	public int getScaled(int original) {
+		return Math.round(scale * original);
 	}
 }

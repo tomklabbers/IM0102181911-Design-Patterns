@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.Color;
 import javax.swing.JComponent;
 
@@ -17,9 +19,10 @@ import styles.BorderStyle;
 public class SlideView extends JComponent {
 	
 	private static final long serialVersionUID = 1L;
-	
+	private static final int itemSpacing = 4;
 	private Frame parentView;
 	private Slide model;
+	private Map<Rectangle, SlideItem> itemLookup;
 	public SlideView(Frame parent) {
 		parentView = parent;
 	}
@@ -34,9 +37,18 @@ public class SlideView extends JComponent {
 		repaint();
 	}
 	
+	public SlideItem getItemAtPos(int x, int y) {
+		for (Map.Entry<Rectangle, SlideItem> item : itemLookup.entrySet()) {
+			if (item.getKey().contains(x, y)) {
+				return item.getValue();
+			}
+		}
+		return null;
+	}
+	
 	public void drawSlide(Slide slide, PainterFactory factory) {
-		int y = 0;
-		System.out.println(slide);	
+		int y = itemSpacing;
+		itemLookup = new HashMap<Rectangle, SlideItem>();
 		for (SlideItem item : slide.getItems()) {
 			SlidePainter painter = null;
 			switch (item.getType()) {
@@ -53,22 +65,26 @@ public class SlideView extends JComponent {
 				continue;
 			}
 			int x = item.getStyle().getIndent();
-			Rectangle location = new Rectangle(x, y, PresentationView.WIDTH - x, 0); 
+			Rectangle location = null;
 			BorderStyle borderStyle = null;
 			if (item.getStyle() instanceof BorderStyle) {
 				borderStyle = (BorderStyle)item.getStyle();
-				location.x += borderStyle.getBorderStrokeWidth();
-				location.width = location.width - (borderStyle.getBorderStrokeWidth() * 2) - location.x;				
+				int strokeWidth = factory.getScaled(borderStyle.getBorderStrokeWidth());
+				location = new Rectangle(x + strokeWidth, y + strokeWidth, PresentationView.WIDTH - x - strokeWidth , 0);
+			}
+			else {
+				location = new Rectangle(x, y, PresentationView.WIDTH - x, 0);
 			}
 			Rectangle result = painter.draw(item, location);
-			if(borderStyle != null) {
-				SlidePainter borderpainter = factory.createBorderPainter();				
-				Rectangle borderLocation = new Rectangle(x,y, result.width + borderStyle.getBorderStrokeWidth()*2 , result.height + borderStyle.getBorderStrokeWidth()*2);
+			
+			if(borderStyle != null) {			
+				SlidePainter borderpainter = factory.createBorderPainter();		
+				int strokeWidth = factory.getScaled(borderStyle.getBorderStrokeWidth());				
+				Rectangle borderLocation = new Rectangle(x,y, result.width + strokeWidth *2 , result.height + strokeWidth * 2);
 				result = borderpainter.draw(item, borderLocation);
-				y += 2;
 			}
 			if (result != null) {
-				y += result.height;
+				y += result.height + factory.getScaled(itemSpacing);
 			}						
 		}
 	}	
