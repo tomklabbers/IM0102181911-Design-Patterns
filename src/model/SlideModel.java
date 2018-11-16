@@ -5,6 +5,7 @@ import java.util.Vector;
 import factory.SlideItemFactory;
 import interfaces.Slide;
 import model.SlideItem;
+import styles.StyleFactory;
 
 public class SlideModel implements Slide {
 	private SlideItem title;
@@ -18,11 +19,13 @@ public class SlideModel implements Slide {
 	
 	public void setTitle(String title) {
 		this.title = SlideItemFactory.createSlideItem("text", 0);
+		this.title.setStyle(StyleFactory.createStyle(this.title.getType(), false, 0));
 		this.title.setValue(title);
 	}
 	
 	public void setMenu(int currentIndex, int maxIndex) {
 		menu = SlideItemFactory.createMenuItem(currentIndex, maxIndex);
+		menu.setStyle(StyleFactory.createStyle(menu.getType(), false, 0));
 	}
 	
 	public String getTitle() {

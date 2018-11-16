@@ -7,7 +7,7 @@ public enum ActionTypes {
 	
 	public static ActionTypes getActionType(String name) {
 		switch (name) {
-		case "sound":
+		case "beep":
 			return ACTION_SOUND;
 		case "presentation":
 			return ACTION_OPEN_PRESENTATION;
@@ -19,7 +19,7 @@ public enum ActionTypes {
 	public static String getActionName(ActionTypes type) {
 		switch (type) {
 		case ACTION_SOUND:
-			return "sound";
+			return "beep";
 		case ACTION_OPEN_PRESENTATION:
 			return "presentation";
 		default:

@@ -14,6 +14,8 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import actions.ActionFactory;
+import actions.SlideAction;
 import factory.SlideFactory;
 import factory.SlideItemFactory;
 import interfaces.Presentation;
@@ -21,6 +23,7 @@ import interfaces.Slide;
 import model.BitmapItem;
 import model.SlideItem;
 import model.TextItem;
+import styles.StyleFactory;
 
 public class XMLSerializer implements Serializer{
 	
@@ -36,6 +39,9 @@ public class XMLSerializer implements Serializer{
     protected static final String KIND = "kind";
     protected static final String TEXT = "text";
     protected static final String IMAGE = "image";
+    protected static final String ACTION = "action";
+    protected static final String VALUE = "value"; 
+    protected static final String NAME = "name";
     
     private Element dom;
     
@@ -82,27 +88,45 @@ public class XMLSerializer implements Serializer{
 				Slide slide = SlideFactory.createSlide();
 				slide.setTitle(getElementContent(slideEl, SLIDETITLE));
 				
-				NodeList slideItems = slideEl.getElementsByTagName(ITEM);
+				NodeList slideItems = slideEl.getElementsByTagName("*");
+				SlideAction  prevAction = null;
 				for (itemIndex = 0; itemIndex < slideItems.getLength(); itemIndex++) {
 					Element itemEl = (Element) slideItems.item(itemIndex);
 					
 					// Retrieve SlideItem attributes
 					NamedNodeMap attributes = itemEl.getAttributes();
-					int level 	= getNumberAttr(attributes, LEVEL);
-					String type 	= getTextAttr(attributes, KIND);
-					
-					SlideItem item = SlideItemFactory.createSlideItem(type, level);
-					
-					// Only continue populating SlideItem if type is supported
-					if(item != null) {
-						item.setValue(itemEl.getTextContent());
-						
-						// Add SlideItem to the parent Slide
-						slide.addItem(item);
+
+					System.out.println(itemEl.getNodeName());
+					if (itemEl.getNodeName().equals(ACTION)) {
+						String name = getTextAttr(attributes, NAME);
+						String value = "";
+						if (attributes.getNamedItem(VALUE) != null) {
+							value = getTextAttr(attributes, VALUE);
+						}
+						SlideAction action = ActionFactory.createAction(name, value);
+						action.setAction(prevAction);
+						prevAction = action;
 					}
-					else {
-						System.err.println("Invalid SlideItem in XML file with type: "+type);
-					}
+					else if (itemEl.getNodeName().equals(ITEM)){
+						int level 	= getNumberAttr(attributes, LEVEL);
+						String type 	= getTextAttr(attributes, KIND);
+						SlideItem item = SlideItemFactory.createSlideItem(type, level);
+						if(prevAction != null) {
+							item.setAction(prevAction);
+						}
+						item.setStyle(StyleFactory.createStyle(type, prevAction != null, level));
+						prevAction = null;
+						// Only continue populating SlideItem if type is supported
+						if(item != null) {
+							item.setValue(itemEl.getTextContent());
+							
+							// Add SlideItem to the parent Slide
+							slide.addItem(item);
+						}
+						else {
+							System.err.println("Invalid SlideItem in XML file with type: "+type);
+						}						
+					}				
 				}
 				
 				presentation.addSlide(slide);

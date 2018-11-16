@@ -46,6 +46,8 @@
 		<item kind="text"  level="1"> </item>
 		<item kind="text"  level="1">Dit is het einde van de presentatie.</item>
 		<item kind="image"  level="1">JabberPoint.jpg</item>
-		<item kind="text"  level="1">Tot ziens.</item>
+		<action name="presentation" value="test.xml" >
+			<item kind="text"  level="1">Tot ziens.</item>
+		</action>
 	</slide>
 </presentation>

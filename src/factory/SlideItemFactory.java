@@ -24,7 +24,6 @@ public class SlideItemFactory {
 		else if(TYPE_IMAGE.equals(type)) {
 			item = new BitmapItem(level);
 		}
-		item.setStyle(StyleFactory.createStyle(type, true, level));
 		
 		return item;
 	}
