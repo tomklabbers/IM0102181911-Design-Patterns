@@ -24,6 +24,10 @@ abstract class GraphicsPainter  implements SlidePainter {
 		return scale;
 	}
 	
+	public int scale(int original) {
+		return Math.round(scale * original);
+	}
+	
 	@Override
 	abstract public Rectangle draw(SlideItem item, Rectangle location);
 

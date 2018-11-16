@@ -34,14 +34,14 @@ class GTextPainter extends GraphicsPainter {
 	private List<TextLayout> getLayouts(String value, Graphics g, FontStyle s, float width) {
 		List<TextLayout> layouts = new ArrayList<TextLayout>(); 
 		AttributedString attStr = getAttributedString(value,s, getScale());
-    	Graphics2D g2d = (Graphics2D) g;
-    	FontRenderContext frc = g2d.getFontRenderContext();
-    	LineBreakMeasurer measurer = new LineBreakMeasurer(attStr.getIterator(), frc);
-    	while (measurer.getPosition() < value.length()) {
-    		TextLayout layout = measurer.nextLayout(width);
-    		layouts.add(layout);
-    	}
-    	return layouts;
+		Graphics2D g2d = (Graphics2D) g;
+		FontRenderContext frc = g2d.getFontRenderContext();
+		LineBreakMeasurer measurer = new LineBreakMeasurer(attStr.getIterator(), frc);
+	    	while (measurer.getPosition() < value.length()) {
+	    		TextLayout layout = measurer.nextLayout(width);
+	    		layouts.add(layout);
+	    	}
+	    	return layouts;
 	}	
 	
 	/**

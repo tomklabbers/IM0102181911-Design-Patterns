@@ -109,7 +109,6 @@ public class MenuController extends MenuBar {
 		fileMenu.add(menuItem = mkMenuItem(EXIT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				System.out.println("Program :: Exit");
 				System.exit(0);
 			}
 		});
@@ -121,7 +120,6 @@ public class MenuController extends MenuBar {
 		viewMenu.add(menuItem = mkMenuItem(NEXT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				System.out.println("View :: Next");
 				controller.nextSlide();
 			}
 		});
@@ -129,7 +127,6 @@ public class MenuController extends MenuBar {
 		viewMenu.add(menuItem = mkMenuItem(PREV));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				System.out.println("View :: Prev");
 				controller.prevSlide();
 			}
 		});
@@ -139,8 +136,7 @@ public class MenuController extends MenuBar {
 			public void actionPerformed(ActionEvent actionEvent) {
 				String pageNumberStr = JOptionPane.showInputDialog((Object)PAGENR);
 				int pageNumber = Integer.parseInt(pageNumberStr);
-				System.out.println("Goto Slide :: "+pageNumber);
-				controller.goToSlide(pageNumber - 1);
+				controller.goToSlide(pageNumber);
 			}
 		});
 		

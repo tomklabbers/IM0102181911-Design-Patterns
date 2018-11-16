@@ -31,9 +31,4 @@ class GraphicsPainterFactory implements PainterFactory {
 	public SlidePainter createBorderPainter() {
 		return new GBorderPainter(canvas, scale);
 	}
-	
-	@Override
-	public int getScaled(int original) {
-		return Math.round(scale * original);
-	}
 }
