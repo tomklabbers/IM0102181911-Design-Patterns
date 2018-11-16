@@ -1,5 +1,7 @@
 package accessor;
 
+import actions.ActionFactory;
+import actions.SlideAction;
 import factory.SlideFactory;
 import factory.SlideItemFactory;
 import interfaces.Presentation;
@@ -15,9 +17,10 @@ public class DemoReader implements PresentationReader {
 		return item;
 	}
 	
-	private SlideItem createActionedDemoItem(String type, int level, String value) {
+	private SlideItem createActionedDemoItem(String type, int level, String value, SlideAction action) {
 		SlideItem item = SlideItemFactory.createSlideItem(type, level);
-		item.setStyle(StyleFactory.createStyle(type, true, level));
+		item.setStyle(StyleFactory.createStyle(type, action != null, level));
+		item.setAction(action);
 		return item;
 	}	
 	
@@ -33,105 +36,44 @@ public class DemoReader implements PresentationReader {
 		slide = SlideFactory.createSlide();
 		slide.setTitle("JabberPoint");
 		
-		slide.addItem(createDemoItem("text", 1, "Het Java Presentatie Tool"));
+		slide.addItem(createDemoItem("text", 1, "Het Java Presentatie Tool"));		
+		slide.addItem(createDemoItem("text", 2,"Copyright (c) 1996-2000: Ian Darwin"));
+		slide.addItem(createDemoItem("image", 2,"serclogo_fc.jpg"));			
+		slide.addItem(createDemoItem("text", 2,"Copyright (c) 2000-now:"));
+		slide.addItem(createDemoItem("text", 2,"Gert Florijn en Sylvia Stuurman"));
+		slide.addItem(createDemoItem("text", 4,"JabberPoint aanroepen zonder bestandsnaam"));
+		slide.addItem(createDemoItem("text", 4,"laat deze presentatie zien"));
+		slide.addItem(createDemoItem("text", 1,"Navigeren:"));
 		
-//		item = SlideItemFactory.createSlideItem("text", 2);
-//		item.setValue("Copyright (c) 1996-2000: Ian Darwin");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("image", 2);
-//		item.setValue("serclogo_fc.jpg");
-//		slide.addItem(item);		
-//
-//		item = SlideItemFactory.createSlideItem("text", 2);
-//		item.setValue("Copyright (c) 2000-now:");
-//		slide.addItem(item);
-//
-//		item = SlideItemFactory.createSlideItem("text", 2);
-//		item.setValue("Gert Florijn en Sylvia Stuurman");
-//		slide.addItem(item);
-//
-//		item = SlideItemFactory.createSlideItem("text", 4);
-//		item.setValue("JabberPoint aanroepen zonder bestandsnaam");
-//		slide.addItem(item);
-//
-//		item = SlideItemFactory.createSlideItem("text", 4);
-//		item.setValue("laat deze presentatie zien");
-//		slide.addItem(item);
-//
-//		item = SlideItemFactory.createSlideItem("text", 1);
-//		item.setValue("Navigeren:");
-//		slide.addItem(item);
-//
-//		item = SlideItemFactory.createSlideItem("text", 3);
-//		item.setValue("Volgende slide: PgDn of Enter");
-//		slide.addItem(item);
-//
-//		item = SlideItemFactory.createSlideItem("text", 3);
-//		item.setValue("Vorige slide: PgUp of up-arrow");
-//		slide.addItem(item);
-//
-//		item = SlideItemFactory.createSlideItem("text", 3);
-//		item.setValue("Stoppen: q or Q");
-//		slide.addItem(item);
-//
-//		presentation.addSlide(slide);
-//
-//		slide = SlideFactory.createSlide();
-//		slide.setTitle("Demonstratie van levels en stijlen");
-//		
-//		item = SlideItemFactory.createSlideItem("text", 1);
-//		item.setValue("Level 1");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 2);
-//		item.setValue("Level 2");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 1);
-//		item.setValue("Nogmaals level 1");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 1);
-//		item.setValue("Level 1 heeft stijl nummer 1");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 2);
-//		item.setValue("Level 2 heeft stijl nummer 2");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 3);
-//		item.setValue("Zo ziet level 3 er uit");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 4);
-//		item.setValue("En dit is level 4");
-//		slide.addItem(item);
-//		
-//		presentation.addSlide(slide);
-//
-//		slide = SlideFactory.createSlide();
-//		slide.setTitle("De derde slide");
-//		
-//		item = SlideItemFactory.createSlideItem("text", 1);
-//		item.setValue("Om een nieuwe presentatie te openen,");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 2);
-//		item.setValue("gebruik File->Open uit het menu.");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 1);
-//		item.setValue(" ");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("text", 1);
-//		item.setValue("Dit is het einde van de presentatie.");
-//		slide.addItem(item);
-//		
-//		item = SlideItemFactory.createSlideItem("image", 1);
-//		item.setValue("JabberPoint.jpg");
-//		slide.addItem(item);
+		SlideAction action = ActionFactory.createAction("next", "");
+		slide.addItem(createActionedDemoItem("text", 3,"Volgende slide: PgDn of Enter", action));
+		
+		slide.addItem(createDemoItem("text", 3,"Vorige slide: PgUp of up-arrow"));
+		slide.addItem(createDemoItem("text", 3,"Stoppen: q or Q"));
+
+		presentation.addSlide(slide);
+
+		slide = SlideFactory.createSlide();
+		slide.setTitle("Demonstratie van levels en stijlen");
+		
+		slide.addItem(createDemoItem("text", 1,"Level 1"));		
+		slide.addItem(createDemoItem("text", 2,"Level 2"));
+		slide.addItem(createDemoItem("text", 1,"Nogmaals level 1"));
+		slide.addItem(createDemoItem("text", 1,"Level 1 heeft stijl nummer 1"));
+		slide.addItem(createDemoItem("text", 2,"Level 2 heeft stijl nummer 2"));
+		slide.addItem(createDemoItem("text", 3,"Zo ziet level 3 er uit"));
+		slide.addItem(createDemoItem("text", 4,"En dit is level 4"));
+
+		presentation.addSlide(slide);
+
+		slide = SlideFactory.createSlide();
+		slide.setTitle("De derde slide");
+		
+		slide.addItem(createDemoItem("text", 1,"Om een nieuwe presentatie te openen,"));	
+		slide.addItem(createDemoItem("text", 2,"gebruik File->Open uit het menu."));		
+		slide.addItem(createDemoItem("text", 1," "));		
+		slide.addItem(createDemoItem("text", 1,"Dit is het einde van de presentatie."));		
+		slide.addItem(createDemoItem("image", 1,"JabberPoint.jpg"));
 		
 		presentation.addSlide(slide);
 	}
