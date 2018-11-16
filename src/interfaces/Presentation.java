@@ -17,5 +17,9 @@ public interface Presentation {
 	
 	public Slide getCurrentSlide();
 	
+	public int getCurrentSlideNumber();
+	
+	public int getSlideCount();
+	
 	public Vector<Slide> getSlides();
 }

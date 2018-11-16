@@ -66,4 +66,12 @@ public class PresentationModel implements Presentation {
 	public Vector<Slide> getSlides() {
 		return slides;
 	}
+	
+	public int getCurrentSlideNumber() {
+		return currentSlideIndex + 1;
+	}
+	
+	public int getSlideCount() {
+		return slides.size();
+	}
 }

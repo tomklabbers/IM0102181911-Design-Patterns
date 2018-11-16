@@ -5,7 +5,6 @@ import interfaces.Slide;
 import view.SlideView;
 
 public class SlideController {
-	
 	private SlideView view;
 	private Presentation model;
 	
@@ -23,6 +22,7 @@ public class SlideController {
 	
 	public void updateView() {
 		Slide slide = model.getCurrentSlide();
+		slide.setMenu(model.getCurrentSlideNumber(), model.getSlideCount());
 		view.setSlide(slide);
 	}
 }

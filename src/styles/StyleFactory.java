@@ -3,6 +3,7 @@ package styles;
 public class StyleFactory {
 	public static SlideItemStyle createStyle(String slideItemType, boolean hasActions, int level) {
 		switch(slideItemType) {
+		case "menu":
 		case "text":
 			if (hasActions) {
 				return new TextItemActionStyle(level);

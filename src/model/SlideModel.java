@@ -8,6 +8,7 @@ import model.SlideItem;
 
 public class SlideModel implements Slide {
 	private SlideItem title;
+	private SlideItem menu;
 	
 	private Vector<SlideItem> items;
 	
@@ -18,6 +19,10 @@ public class SlideModel implements Slide {
 	public void setTitle(String title) {
 		this.title = SlideItemFactory.createSlideItem("text", 0);
 		this.title.setValue(title);
+	}
+	
+	public void setMenu(int currentIndex, int maxIndex) {
+		menu = SlideItemFactory.createMenuItem(currentIndex, maxIndex);
 	}
 	
 	public String getTitle() {
@@ -32,6 +37,7 @@ public class SlideModel implements Slide {
 	public Vector<SlideItem> getItems() {
 		Vector<SlideItem> tmp = new Vector<SlideItem>(items);
 		tmp.add(0, title);
+		tmp.add(0, menu);
 		
 		return tmp;
 	}

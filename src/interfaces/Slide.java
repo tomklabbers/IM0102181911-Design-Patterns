@@ -14,4 +14,6 @@ public interface Slide {
 	public Vector<SlideItem> getItems();
 	
 	public Vector<SlideItem> getRawItems();
+	
+	public void setMenu(int currentIndex, int maxIndex);
 }

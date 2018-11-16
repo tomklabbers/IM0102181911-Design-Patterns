@@ -51,14 +51,14 @@ public class SlideView extends JComponent {
 		for (SlideItem item : slide.getItems()) {
 			SlidePainter painter = null;
 			switch (item.getType()) {
-				case "text":{
+				case "menu":
+				case "text":
 					painter = factory.createTextPainter();
 					break;
-				}
-				case "image":{
+				
+				case "image":
 					painter = factory.createImagePainter();
 					break;
-				}
 			}	
 			if (painter == null) {
 				continue;
