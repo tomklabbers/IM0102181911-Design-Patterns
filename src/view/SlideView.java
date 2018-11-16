@@ -85,7 +85,7 @@ public class SlideView extends JComponent {
 			}
 			
 			Rectangle result = painter.draw(item, location);
-			
+			itemLookup.put(result, item);
 			if(borderStyle != null) {			
 				SlidePainter borderpainter = factory.createBorderPainter();		
 				int strokeWidth = painter.scale(borderStyle.getBorderStrokeWidth());				

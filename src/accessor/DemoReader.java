@@ -13,12 +13,14 @@ public class DemoReader implements PresentationReader {
 	
 	private SlideItem createDemoItem(String type, int level, String value) {
 		SlideItem item = SlideItemFactory.createSlideItem(type, level);
+		item.setValue(value);
 		item.setStyle(StyleFactory.createStyle(type, false, level));
 		return item;
 	}
 	
 	private SlideItem createActionedDemoItem(String type, int level, String value, SlideAction action) {
 		SlideItem item = SlideItemFactory.createSlideItem(type, level);
+		item.setValue(value);		
 		item.setStyle(StyleFactory.createStyle(type, action != null, level));
 		item.setAction(action);
 		return item;
@@ -28,7 +30,6 @@ public class DemoReader implements PresentationReader {
 	 * This method loads a demo presentation which is hardcoded.
 	 */
 	public void load(Presentation presentation) {
-		SlideItem item;
 		Slide slide;
 		
 		presentation.setTitle("DEMO Presentatie JabberPoint");
