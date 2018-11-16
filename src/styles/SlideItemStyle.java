@@ -2,6 +2,9 @@ package styles;
 
 public abstract class SlideItemStyle {
 	private int level;
+	private Alignment alignment;
+	
+	public static enum Alignment {RIGHT, LEFT, CENTER};
 	
 	/**
 	 * abstract <b>SlideItemStyle</b> creator
@@ -9,6 +12,15 @@ public abstract class SlideItemStyle {
 	 */
 	public SlideItemStyle(int lvl) {
 		this.level = lvl;
+		alignment = Alignment.LEFT;
+	}
+	
+	public void setAlignment(Alignment align) {
+		alignment = align;
+	}
+	
+	public Alignment getAlignment() {
+		return alignment;
 	}
 	
 	public int getLevel() {

@@ -22,7 +22,19 @@ class GImagePainter extends GraphicsPainter {
 			Rectangle result = new Rectangle(location.x, location.y, value.getImage().getWidth(observer) ,value.getImage().getHeight(observer));
 			result.width = scale(result.width);
 			result.height = scale(result.height);
-			getCanvas().drawImage(value.getImage(),location.x, location.y, result.width, result.height, observer);
+			
+			switch(item.getStyle().getAlignment()) {
+				case RIGHT:
+					result.x = location.width - result.width;
+					break;
+				case CENTER:
+					result.x += ((location.width - result.width)/2);
+					break;
+				case LEFT:
+				default:
+					//no changes, default behavior
+			}
+			getCanvas().drawImage(value.getImage(),result.x, result.y, result.width, result.height, observer);
 			return result;
 		}
 		else {

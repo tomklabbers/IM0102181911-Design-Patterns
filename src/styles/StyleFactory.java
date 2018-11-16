@@ -4,6 +4,7 @@ public class StyleFactory {
 	public static SlideItemStyle createStyle(String slideItemType, boolean hasActions, int level) {
 		switch(slideItemType) {
 		case "menu":
+			return new MenuItemStyle(level);
 		case "text":
 			if (hasActions) {
 				return new TextItemActionStyle(level);

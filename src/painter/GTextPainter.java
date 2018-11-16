@@ -54,26 +54,45 @@ class GTextPainter extends GraphicsPainter {
 			SlideItemTextValue value = (SlideItemTextValue) item;
 			FontStyle fontstyle = (FontStyle) item.getStyle();
 			if ( value.getValue() == null || value.getValue().length() == 0) {
-				return new Rectangle(0, 0, 0, 20 );
+				return location;
 			}
 			List<TextLayout> layouts = getLayouts(value.getValue(), getCanvas(), fontstyle, location.getBounds().width);
 			Point pen = location.getBounds().getLocation();
+			
 			Graphics2D g2d = (Graphics2D)getCanvas();
 			g2d.setFont(fontstyle.getFont(getScale()));
 			g2d.setColor(fontstyle.getFontColor());
 			Iterator<TextLayout> it = layouts.iterator();
-			location.width = 0;
+			int maxWidth = 0;
+			int xPos = location.x;
 			while (it.hasNext()) {
 				TextLayout layout = it.next();
-				location.width = Math.max(location.width,(int) layout.getBounds().getWidth());
+				int textWidth = (int) layout.getBounds().getWidth();
+				
+				switch(item.getStyle().getAlignment()) {
+					case RIGHT:
+						xPos = location.width - textWidth;
+						break;
+					case CENTER:
+						xPos = pen.x + ((location.width - textWidth)/2);
+						break;
+					case LEFT:
+					default:
+						xPos = pen.x;
+						break;
+				}
+				
 				pen.y += layout.getAscent();
-				layout.draw(g2d, pen.x, pen.y);
+				layout.draw(g2d, xPos, pen.y);
 				pen.y += layout.getDescent();
+				
+				// Find the widest text line
+				maxWidth = Math.max(maxWidth, textWidth);
 			}
-			return new Rectangle(location.x, location.y, location.width, pen.y - location.y);
+			return new Rectangle(xPos, location.y, maxWidth, pen.y - location.y);
 		}
 		else {
-			return new Rectangle();
+			return location;
 		}
 	}
 }

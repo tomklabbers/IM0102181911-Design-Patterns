@@ -21,6 +21,6 @@ public class MenuItem extends SlideItem implements SlideItemTextValue {
 
 	@Override
 	public String getValue() {
-		return "Slide "+currentIndex+" van "+maxIndex;
+		return "Slide "+currentIndex+" of "+maxIndex;
 	}
 }
