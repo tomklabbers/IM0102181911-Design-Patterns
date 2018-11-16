@@ -4,6 +4,7 @@ import controller.KeyController;
 import controller.MenuController;
 import controller.MouseController;
 import controller.PresentationController;
+import controller.SlideController;
 
 /** JabberPoint Main Programma
  * <p>This program is distributed under the terms of the accompanying
@@ -28,21 +29,22 @@ public class JabberPoint {
 	public static void main(String argv[]) {
 		String presentationPath;
 		PresentationController mainWindowCtrl;
+		SlideController slideCtrl;
+		SlideView slideView;
 		PresentationView mainView;
 		MenuController menuCtrl; 
 		
 		mainWindowCtrl 	= new PresentationController();
 		menuCtrl 		= new MenuController(mainWindowCtrl);
+		slideView 		= new SlideView();
+		slideCtrl 		= new SlideController(slideView);
 		mainView 		= new PresentationView();
-		
-		
-		// temporarily add mousecontroller to mainView. This should
-		// be added to the slide view.
-		mainView.addMouseListener(new MouseController(mainWindowCtrl));
 		mainView.addKeyListener(new KeyController(mainWindowCtrl));
+		mainView.addMouseListener(new MouseController(mainWindowCtrl));
 		mainView.setMenuBar(menuCtrl);
 		
-		mainWindowCtrl.setView(mainView);;
+		mainWindowCtrl.setView(mainView);
+		mainWindowCtrl.setSlideController(slideCtrl);
 		
 		if (argv.length > 0) { 
 			presentationPath = argv[0];

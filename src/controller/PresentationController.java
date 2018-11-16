@@ -15,7 +15,7 @@ import interfaces.*;
 
 public class PresentationController {
 	private PresentationView view;
-	private SlideView slideView;
+	private SlideController slideController;
 	
 	private Presentation model;
 	
@@ -32,40 +32,37 @@ public class PresentationController {
 		});
 		
 		this.view.setVisible(true);
-		setSlideView(new SlideView(this.view));
 	}
 	
-	private void initView() {
-		// TODO check if view is set, else quit program
-		
-		view.setTitle(model.getTitle());
-		slideView.setSlide(model.getCurrentSlide());
+	private void updateView() {
+		slideController.updateView();
 	}
 	
 	public Frame getView() {
 		return view;
 	}
 	
-	public void setModel(Presentation model) {
-		this.model = model;
-	}
-	
-	public void setSlideView(SlideView slideComponent) {
-		this.slideView = slideComponent;
-		this.view.getContentPane().add(slideComponent);
+	public void setModel(Presentation presentation) {
+		model = presentation;
+		slideController.setModel(presentation);
+		
+		view.setTitle(model.getTitle());
+		updateView();
 	}
 	
 	public void open(String path) {
 		PresentationReader reader = AccessorFactory.createReader(path);
-		model = PresentationFactory.createPresentation(reader);
 		
-		initView();
+		setModel(PresentationFactory.createPresentation(reader));
 	}
 	
 	public void open() {
-		model = PresentationFactory.createPresentation();
-		
-		initView();
+		setModel(PresentationFactory.createPresentation());
+	}
+	
+	public void setSlideController(SlideController slideCtrl) {
+		slideController = slideCtrl;
+		view.getContentPane().add(slideController.getView());
 	}
 	
 	public void save(String path) {
@@ -79,15 +76,24 @@ public class PresentationController {
 	}
 	
 	public void nextSlide() {
-		model.nextSlide();
+		if(model.nextSlide()) {
+			updateView();
+		}
 	}
 	
 	public void prevSlide() {
-		model.prevSlide();
+		if(model.prevSlide()) {
+			updateView();
+		}
 	}
 	
 	public void goToSlide(int index) {
-		model.goToSlide(index);
+		// User input has an offset of 1
+		index--;
+		
+		if(model.goToSlide(index)) {
+			updateView();
+		}
 	}
 	
 	public void clickAction(int x, int y) {

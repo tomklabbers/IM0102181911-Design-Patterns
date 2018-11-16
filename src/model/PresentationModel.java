@@ -8,11 +8,12 @@ import interfaces.Slide;
 
 public class PresentationModel implements Presentation {
 	String title = "untitled";
-	
+	int currentSlideIndex;
 	Vector<Slide> slides;
 	
 	public PresentationModel() {
 		slides = new Vector<Slide>();
+		currentSlideIndex = 0;
 	}
 	
 	public void setTitle(String title) {
@@ -28,27 +29,37 @@ public class PresentationModel implements Presentation {
 	}
 
 	@Override
-	public void nextSlide() {
-		// TODO Auto-generated method stub
-		
+	public boolean nextSlide() {
+		if(currentSlideIndex < slides.size()-1) {
+			currentSlideIndex++;
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	public void prevSlide() {
-		// TODO Auto-generated method stub
-		
+	public boolean prevSlide() {
+		if(currentSlideIndex > 0) {
+			currentSlideIndex--;
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	public void goToSlide(int index) {
-		// TODO Auto-generated method stub
-		
+	public boolean goToSlide(int index) {
+		if(index > 0 &&
+		   index < slides.size() &&
+		   index != currentSlideIndex) {
+			currentSlideIndex = index;
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public Slide getCurrentSlide() {
-		// TODO Add logic
-		return slides.firstElement();
+		return slides.elementAt(currentSlideIndex);
 	}
 
 	@Override

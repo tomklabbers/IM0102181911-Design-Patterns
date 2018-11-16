@@ -9,11 +9,11 @@ public interface Presentation {
 	
 	public void addSlide(Slide slide);
 	
-	public void nextSlide();
+	public boolean nextSlide();
 	
-	public void prevSlide();
+	public boolean prevSlide();
 	
-	public void goToSlide(int index);
+	public boolean goToSlide(int index);
 	
 	public Slide getCurrentSlide();
 	

@@ -23,12 +23,11 @@ public class SlideView extends JComponent {
 	private Frame parentView;
 	private Slide model;
 	private Map<Rectangle, SlideItem> itemLookup;
-	public SlideView(Frame parent) {
-		parentView = parent;
+	public SlideView() {
 	}
 	
 	public Dimension getPreferredSize() {
-		return new Dimension(parentView.getWidth(), parentView.getHeight());
+		return new Dimension(getParent().getWidth(), getParent().getHeight());
 	}
 	
 	public void setSlide(Slide slide) {
@@ -94,7 +93,7 @@ public class SlideView extends JComponent {
 		g.fillRect(0,0, getSize().width, getSize().height);		
 		if(model != null) {
 			System.out.println("Painting");
-			PainterFactory factory = AbstractPainterFactory.GraphicsPainter(g, new Rectangle(parentView.getWidth(), parentView.getHeight()), this);  			
+			PainterFactory factory = AbstractPainterFactory.GraphicsPainter(g, new Rectangle(getParent().getWidth(), getParent().getHeight()), this);  			
 			drawSlide(model, factory);
 		}
 //		
