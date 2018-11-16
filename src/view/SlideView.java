@@ -15,14 +15,15 @@ import painter.AbstractPainterFactory;
 import painter.PainterFactory;
 import painter.SlidePainter;
 import styles.BorderStyle;
+import actions.SlideAction;
 
 public class SlideView extends JComponent {
 	
 	private static final long serialVersionUID = 1L;
 	private static final int itemSpacing = 4;
-	private Frame parentView;
 	private Slide model;
 	private Map<Rectangle, SlideItem> itemLookup;
+	
 	public SlideView() {
 	}
 	
@@ -36,7 +37,7 @@ public class SlideView extends JComponent {
 		repaint();
 	}
 	
-	public SlideItem getItemAtPos(int x, int y) {
+	public SlideAction getItemAtPos(int x, int y) {
 		for (Map.Entry<Rectangle, SlideItem> item : itemLookup.entrySet()) {
 			if (item.getKey().contains(x, y)) {
 				return item.getValue();
@@ -75,7 +76,7 @@ public class SlideView extends JComponent {
 				location = new Rectangle(x, y, PresentationView.WIDTH - x, 0);
 			}
 			Rectangle result = painter.draw(item, location);
-			
+			itemLookup.put(result, item);
 			if(borderStyle != null) {			
 				SlidePainter borderpainter = factory.createBorderPainter();		
 				int strokeWidth = factory.getScaled(borderStyle.getBorderStrokeWidth());				
@@ -96,16 +97,5 @@ public class SlideView extends JComponent {
 			PainterFactory factory = AbstractPainterFactory.GraphicsPainter(g, new Rectangle(getParent().getWidth(), getParent().getHeight()), this);  			
 			drawSlide(model, factory);
 		}
-//		
-//		
-//		if (presentation.getSlideNumber() < 0 || slide == null) {
-//			return;
-//		}
-//		g.setFont(labelFont);
-//		g.setColor(COLOR);
-//		g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " +
-//                 presentation.getSize(), XPOS, YPOS);
-//		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-//		slide.draw(g, area, this);
 	}
 }

@@ -1,19 +1,18 @@
 package controller;
 
-import java.awt.Component;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import accessor.PresentationReader;
 import accessor.PresentationWriter;
+import actions.SlideAction;
 import factory.PresentationFactory;
 import factory.AccessorFactory;
 import view.PresentationView;
-import view.SlideView;
 import interfaces.*;
 
-public class PresentationController {
+public class PresentationController implements PresentationControlActions{
 	private PresentationView view;
 	private SlideController slideController;
 	
@@ -97,6 +96,9 @@ public class PresentationController {
 	}
 	
 	public void clickAction(int x, int y) {
-		// Handle this
+		SlideAction item = slideController.getView().getItemAtPos(x, y);
+		if (item != null) {
+			item.executeAction(this);
+		}		
 	}
 }

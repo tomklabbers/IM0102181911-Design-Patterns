@@ -1,11 +1,10 @@
 package actions;
 
 public class ActionFactory {
-	public SlideAction createAction(String type, String value) {
-		switch (type) {
-		case "sound":
+	public static SlideAction createAction(String type, String value) {
+		switch (ActionTypes.getActionType(type)) {
+		case ACTION_SOUND:
 			return new SystemBeepAction();
-
 		default:
 			return null;
 		}

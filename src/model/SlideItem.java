@@ -1,7 +1,7 @@
 package model;
-import java.awt.Rectangle;
-import java.awt.Graphics;
-import java.awt.image.ImageObserver;
+
+import actions.SlideAction;
+import interfaces.PresentationControlActions;
 import styles.SlideItemStyle;
 
 /** <p>De abstracte klasse voor een item op een Slide<p>
@@ -15,10 +15,11 @@ import styles.SlideItemStyle;
  * @version 1.6 2014/05/16 Sylvia Stuurman
 */
 
-public abstract class SlideItem {
+public abstract class SlideItem implements SlideAction{
 	private int level = 0; // het level van het slideitem
 	private SlideItemStyle style;
 	private String value;
+	private SlideAction action = null;
 
 	public SlideItem(int lev) {
 		level = lev;
@@ -49,5 +50,17 @@ public abstract class SlideItem {
 	
 	public String getRawValue() {
 		return value;
+	}
+	
+	@Override
+	public void executeAction(PresentationControlActions controlActions) {
+		if (action != null) {
+			action.executeAction(controlActions);
+		}
+	}
+	
+	@Override
+	public void setAction(SlideAction action) {
+		this.action = action;		
 	}
 }
