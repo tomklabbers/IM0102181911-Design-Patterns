@@ -1,5 +1,6 @@
 package slideitem;
 
+import actions.ActionTypes;
 import actions.SlideAction;
 import interfaces.PresentationControlActions;
 import styles.SlideItemStyle;
@@ -48,5 +49,20 @@ public abstract class SlideItem implements SlideAction{
 	@Override
 	public void setAction(SlideAction action) {
 		this.action = action;		
+	}
+	
+	public SlideAction getAction() {
+		return action;
+	}
+	
+	//Someone might think that the items are actions because they implement the same interface
+	@Override
+	public ActionTypes getActionType() {
+		return null;
+	}
+	
+	@Override
+	public String getActionValue() {
+		return "";
 	}
 }

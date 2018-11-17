@@ -17,5 +17,14 @@ public class GoToSlideAction extends ActionDecorator {
 	public void doExecuteAction(PresentationControlActions controlActions) {
 		controlActions.goToSlide(slideNumber);	
 	}
+	
+	@Override
+	public ActionTypes getActionType() {
+		return ActionTypes.ACTION_GOTO_PRESENTATION;
+	}
 
+	@Override
+	public String getActionValue() {
+		return Integer.toString(slideNumber);
+	}
 }

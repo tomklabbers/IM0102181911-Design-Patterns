@@ -13,4 +13,9 @@ public class NextSlideAction extends ActionDecorator {
 		controlActions.nextSlide();
 	}
 
+	@Override
+	public ActionTypes getActionType() {
+		return ActionTypes.ACTION_NEXT_PRESENTATION;
+	}
+
 }

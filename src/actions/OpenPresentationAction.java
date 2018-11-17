@@ -19,4 +19,13 @@ public class OpenPresentationAction extends ActionDecorator {
 		controlActions.open(path);
 	}
 
+	@Override
+	public ActionTypes getActionType() {
+		return ActionTypes.ACTION_OPEN_PRESENTATION;
+	}
+	
+	@Override
+	public String getActionValue() {
+		return path;
+	}	
 }

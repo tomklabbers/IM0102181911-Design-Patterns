@@ -14,5 +14,10 @@ class SystemBeepAction extends ActionDecorator {
 	public void doExecuteAction(PresentationControlActions controlActions) {
 		Toolkit.getDefaultToolkit().beep();	
 	}
-
+	
+	@Override
+	public ActionTypes getActionType() {
+		return ActionTypes.ACTION_SOUND;
+	}
+	
 }

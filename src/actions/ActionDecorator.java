@@ -28,4 +28,14 @@ public abstract class ActionDecorator implements SlideAction {
 	public void setAction(SlideAction action) {
 		nextAction = action;		
 	}	
+	
+	@Override
+	public SlideAction getAction() {
+		return  nextAction;		
+	}	
+	
+	@Override
+	public String getActionValue() {
+		return "";
+	}
 }

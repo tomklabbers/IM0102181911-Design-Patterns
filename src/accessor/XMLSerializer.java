@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import actions.ActionFactory;
+import actions.ActionTypes;
 import actions.SlideAction;
 import factory.SlideFactory;
 import interfaces.Presentation;
@@ -170,6 +171,29 @@ public class XMLSerializer implements Serializer{
 	}
 	
 	/**
+	 * Write the item to a xml element
+	 * @param out PrintWrite
+	 * @param slideItem The slide item to write
+	 */
+	
+	private void serializeItem(PrintWriter out, SlideItem slideItem) {
+		out.print("<item kind="); 
+		if (slideItem instanceof SlideItemTextValue) {
+			out.print("\"text\" level=\"" + slideItem.getStyle().getLevel() + "\">");
+			out.print(slideItem.getRawValue());
+		}
+		else if (slideItem instanceof SlideItemImageValue) {
+			out.print("\"image\" level=\"" + slideItem.getStyle().getLevel() + "\">");
+			out.print(slideItem.getRawValue());
+		}
+		else {
+			System.out.println("Ignoring " + slideItem);
+		}
+//		
+		out.println("</item>");		
+	}
+	
+	/**
 	 * Serialize the presentation content to a PrintWriter
 	 */
 	@Override
@@ -194,20 +218,21 @@ public class XMLSerializer implements Serializer{
 			
 			for (int itemIndex = 0; itemIndex < slideItems.size(); itemIndex++) {
 				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemIndex);
-				out.print("<item kind="); 
-				if (slideItem instanceof SlideItemTextValue) {
-					out.print("\"text\" level=\"" + slideItem.getStyle().getLevel() + "\">");
-					out.print(slideItem.getRawValue());
-				}
-				else if (slideItem instanceof SlideItemImageValue) {
-					out.print("\"image\" level=\"" + slideItem.getStyle().getLevel() + "\">");
-					out.print(slideItem.getRawValue());
+				SlideAction action = slideItem.getAction();
+				if (action != null) {
+					while (action != null) {
+						out.print(String.format("<action name=\"%s\" value=\"%s\">", 
+								ActionTypes.getActionName(action.getActionType()),
+								action.getActionValue()));
+						serializeItem(out, slideItem);
+						out.print("</action>"); 					
+						action = action.getAction();
+					}
 				}
 				else {
-					System.out.println("Ignoring " + slideItem);
+					serializeItem(out, slideItem);
 				}
-//				
-				out.println("</item>");
+				
 			}
 			out.println("</slide>");
 		}

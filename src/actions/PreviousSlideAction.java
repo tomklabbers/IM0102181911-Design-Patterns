@@ -13,4 +13,9 @@ public class PreviousSlideAction extends ActionDecorator {
 		controlActions.prevSlide();
 	}
 
+	@Override
+	public ActionTypes getActionType() {
+		return ActionTypes.ACTION_PREV_PRESENTATION;
+	}
+	
 }
