@@ -1,18 +1,20 @@
 package styles;
 
+import slideitem.SlideItemTypes;
+
 public class StyleFactory {
-	public static SlideItemStyle createStyle(String slideItemType, boolean hasActions, int level) {
+	public static SlideItemStyle createStyle(SlideItemTypes slideItemType, boolean hasActions, int level) {
 		switch(slideItemType) {
-		case "menu":
+		case ITEM_MENU:
 			return new MenuItemStyle(level);
-		case "text":
+		case ITEM_TEXT:
 			if (hasActions) {
 				return new TextItemActionStyle(level);
 			}
 			else {
 				return new TextItemStyle(level);
 			}
-		case "image":
+		case ITEM_IMAGE:
 			if (hasActions) {
 				return new ImageItemActionStyle(level);
 			}

@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
 
-import model.SlideItem;
+import slideitem.SlideItem;
 import styles.BorderStyle;
 
 class GBorderPainter extends GraphicsPainter {

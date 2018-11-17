@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import interfaces.Presentation;
 import interfaces.Slide;
-import model.SlideItem;
+import slideitem.SlideItem;
 
 public class DemoWriter implements PresentationWriter {
 
@@ -21,7 +21,7 @@ public class DemoWriter implements PresentationWriter {
 			
 			for(j = 0; j<items.size(); j++) {
 				item = items.get(j);
-				System.out.println("-- Item: "+item.getType()+" level: "+item.getLevel()+" value: "+item.getRawValue());
+				System.out.println("-- Item: "+item.getType()+" level: "+item.getStyle().getLevel()+" value: "+item.getRawValue());
 			}
 		}
 	}

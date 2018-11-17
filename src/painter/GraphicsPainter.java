@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
-import model.SlideItem;
+import slideitem.SlideItem;
 
 abstract class GraphicsPainter  implements SlidePainter {
 	private Graphics canvas;

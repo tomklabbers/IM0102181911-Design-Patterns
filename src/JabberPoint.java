@@ -40,7 +40,7 @@ public class JabberPoint {
 		slideView 		= new SlideView(mainView);
 		slideCtrl 		= new SlideController(slideView);
 		mainView.addKeyListener(new KeyController(mainWindowCtrl));
-		mainView.addMouseListener(new MouseController(mainWindowCtrl));
+		slideView.addMouseListener(new MouseController(mainWindowCtrl));
 		mainView.setMenuBar(menuCtrl);
 		
 		mainWindowCtrl.setView(mainView);

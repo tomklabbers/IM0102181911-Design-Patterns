@@ -2,9 +2,10 @@ package model;
 
 import java.util.Vector;
 
-import factory.SlideItemFactory;
 import interfaces.Slide;
-import model.SlideItem;
+import slideitem.SlideItem;
+import slideitem.SlideItemFactory;
+import slideitem.SlideItemTypes;
 import styles.StyleFactory;
 
 public class SlideModel implements Slide {
@@ -18,7 +19,7 @@ public class SlideModel implements Slide {
 	}
 	
 	public void setTitle(String title) {
-		this.title = SlideItemFactory.createSlideItem("text", 0);
+		this.title = SlideItemFactory.createSlideItem(SlideItemTypes.ITEM_TEXT);
 		this.title.setStyle(StyleFactory.createStyle(this.title.getType(), false, 0));
 		this.title.setValue(title);
 	}

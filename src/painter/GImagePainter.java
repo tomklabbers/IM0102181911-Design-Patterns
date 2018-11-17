@@ -1,12 +1,12 @@
 package painter;
 
-import model.SlideItem;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.awt.image.ImageObserver;
 
 import interfaces.SlideItemImageValue;
+import slideitem.SlideItem;
 
 class GImagePainter extends GraphicsPainter {
 	private ImageObserver observer;

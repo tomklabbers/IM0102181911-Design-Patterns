@@ -1,4 +1,4 @@
-package model;
+package slideitem;
 
 import actions.SlideAction;
 import interfaces.PresentationControlActions;
@@ -16,25 +16,11 @@ import styles.SlideItemStyle;
 */
 
 public abstract class SlideItem implements SlideAction{
-	private int level = 0; // het level van het slideitem
 	private SlideItemStyle style;
 	private String value;
 	private SlideAction action = null;
-
-	public SlideItem(int lev) {
-		level = lev;
-	}
-
-	public SlideItem() {
-		this(0);
-	}
-
-// Geef het level
-	public int getLevel() {
-		return level;
-	}
 	
-	public abstract String getType();
+	public abstract SlideItemTypes getType();
 	
 	public SlideItemStyle getStyle() {
 		return this.style;

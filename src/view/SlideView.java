@@ -9,10 +9,10 @@ import java.awt.Color;
 import javax.swing.JComponent;
 
 import interfaces.Slide;
-import model.SlideItem;
 import painter.AbstractPainterFactory;
 import painter.PainterFactory;
 import painter.SlidePainter;
+import slideitem.SlideItem;
 import styles.BorderStyle;
 
 public class SlideView extends JComponent {
@@ -59,12 +59,11 @@ public class SlideView extends JComponent {
 		for (SlideItem item : slide.getItems()) {
 			SlidePainter painter = null;
 			switch (item.getType()) {
-				case "menu":
-				case "text":
+				case ITEM_MENU:
+				case ITEM_TEXT:
 					painter = factory.createTextPainter();
-					break;
-				
-				case "image":
+					break;				
+				case ITEM_IMAGE:
 					painter = factory.createImagePainter();
 					break;
 			}	

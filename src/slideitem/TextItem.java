@@ -1,4 +1,4 @@
-package model;
+package slideitem;
 
 import interfaces.SlideItemTextValue;
 
@@ -13,25 +13,23 @@ import interfaces.SlideItemTextValue;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class TextItem extends SlideItem implements SlideItemTextValue {
-	
+class TextItem extends SlideItem implements SlideItemTextValue {	
 	private static final String EMPTYTEXT = "No Text Given";
-
-// een textitem van level level, met als tekst string
-	public TextItem(int level) {
-		super(level);
+	
+	/**
+	 * Create textitem with default text value
+	 */
+	public TextItem() {
+		setValue(EMPTYTEXT);
 	}
 
 	@Override
-	public String getType() {
-		return "text";
+	public SlideItemTypes getType() {
+		return SlideItemTypes.ITEM_TEXT;
 	}
-// een leeg textitem
-	public TextItem() {
-		this(0);
-	}
+	
 	public String toString() {
-		return "TextItem[" + getLevel()+","+getValue()+"]";
+		return "TextItem[" + getStyle()+","+getValue()+"]";
 	}
 
 	@Override

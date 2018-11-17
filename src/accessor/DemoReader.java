@@ -3,26 +3,30 @@ package accessor;
 import actions.ActionFactory;
 import actions.SlideAction;
 import factory.SlideFactory;
-import factory.SlideItemFactory;
 import interfaces.Presentation;
 import interfaces.Slide;
-import model.SlideItem;
+import slideitem.SlideItem;
+import slideitem.SlideItemFactory;
 import styles.StyleFactory;
 
 public class DemoReader implements PresentationReader {
 	
 	private SlideItem createDemoItem(String type, int level, String value) {
-		SlideItem item = SlideItemFactory.createSlideItem(type, level);
-		item.setValue(value);
-		item.setStyle(StyleFactory.createStyle(type, false, level));
+		SlideItem item = SlideItemFactory.createSlideItem(type);
+		if (item != null) {
+			item.setValue(value);
+			item.setStyle(StyleFactory.createStyle(item.getType(), false, level));
+		}
 		return item;
 	}
 	
 	private SlideItem createActionedDemoItem(String type, int level, String value, SlideAction action) {
-		SlideItem item = SlideItemFactory.createSlideItem(type, level);
-		item.setValue(value);		
-		item.setStyle(StyleFactory.createStyle(type, action != null, level));
-		item.setAction(action);
+		SlideItem item = SlideItemFactory.createSlideItem(type);
+		if (item != null) {
+			item.setValue(value);
+			item.setStyle(StyleFactory.createStyle(item.getType(), action != null, level));
+			item.setAction(action);
+		}
 		return item;
 	}	
 	

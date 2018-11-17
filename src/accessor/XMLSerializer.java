@@ -17,12 +17,12 @@ import org.xml.sax.SAXException;
 import actions.ActionFactory;
 import actions.SlideAction;
 import factory.SlideFactory;
-import factory.SlideItemFactory;
 import interfaces.Presentation;
 import interfaces.Slide;
-import model.BitmapItem;
-import model.SlideItem;
-import model.TextItem;
+import interfaces.SlideItemImageValue;
+import interfaces.SlideItemTextValue;
+import slideitem.SlideItem;
+import slideitem.SlideItemFactory;
 import styles.StyleFactory;
 
 public class XMLSerializer implements Serializer{
@@ -110,11 +110,13 @@ public class XMLSerializer implements Serializer{
 					else if (itemEl.getNodeName().equals(ITEM)){
 						int level 	= getNumberAttr(attributes, LEVEL);
 						String type 	= getTextAttr(attributes, KIND);
-						SlideItem item = SlideItemFactory.createSlideItem(type, level);
+						SlideItem item = SlideItemFactory.createSlideItem(type);
 						if(prevAction != null) {
 							item.setAction(prevAction);
 						}
-						item.setStyle(StyleFactory.createStyle(type, prevAction != null, level));
+						if (item != null) {
+							item.setStyle(StyleFactory.createStyle(item.getType(), prevAction != null, level));
+						}
 						prevAction = null;
 						// Only continue populating SlideItem if type is supported
 						if(item != null) {
@@ -166,18 +168,18 @@ public class XMLSerializer implements Serializer{
 			for (int itemIndex = 0; itemIndex < slideItems.size(); itemIndex++) {
 				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemIndex);
 				out.print("<item kind="); 
-				if (slideItem instanceof TextItem) {
-					out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");
-					out.print( ( (TextItem) slideItem).getRawValue());
-				}
-				else if (slideItem instanceof BitmapItem) {
-					out.print("\"image\" level=\"" + slideItem.getLevel() + "\">");
-					out.print( ( (BitmapItem) slideItem).getRawValue());
-				}
-				else {
-					System.out.println("Ignoring " + slideItem);
-				}
-				
+//				if (slideItem instanceof SlideItemTextValue) {
+//					out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");
+//					out.print(slideItem.getRawValue());
+//				}
+//				else if (slideItem instanceof SlideItemImageValue) {
+//					out.print("\"image\" level=\"" + slideItem.getLevel() + "\">");
+//					out.print(slideItem.getRawValue());
+//				}
+//				else {
+//					System.out.println("Ignoring " + slideItem);
+//				}
+//				
 				out.println("</item>");
 			}
 			out.println("</slide>");

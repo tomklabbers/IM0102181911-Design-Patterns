@@ -6,6 +6,10 @@ public abstract class ActionDecorator implements SlideAction {
 	public SlideAction getNextAction() {
 		return nextAction;
 	}
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void setAction(SlideAction action) {
 		nextAction = action;		

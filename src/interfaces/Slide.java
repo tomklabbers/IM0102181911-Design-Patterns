@@ -2,7 +2,7 @@ package interfaces;
 
 import java.util.Vector;
 
-import model.SlideItem;
+import slideitem.SlideItem;
 
 public interface Slide {
 	public void setTitle(String title);
