@@ -56,12 +56,7 @@ public class DemoReader implements PresentationReader {
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 4,"JabberPoint aanroepen zonder bestandsnaam"));
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 4,"laat deze presentatie zien"));
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 1,"Navigeren:"));
-		
-		SlideAction next = ActionFactory.createAction(ActionTypes.ACTION_NEXT_PRESENTATION, "");
-		SlideAction beep = ActionFactory.createAction(ActionTypes.ACTION_SOUND, "");
-		beep.setAction(next);
-		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Volgende slide: PgDn of Enter", beep));
-		
+		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Volgende slide: PgDn of Enter"));		
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Vorige slide: PgUp of up-arrow"));
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Stoppen: q or Q"));
 
@@ -79,9 +74,28 @@ public class DemoReader implements PresentationReader {
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 4,"En dit is level 4"));
 
 		presentation.addSlide(slide);
-
+		
 		slide = SlideFactory.createSlide();
-		slide.setTitle("De derde slide");
+		slide.setTitle("Demonstratie van acties");
+
+		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 5,"Alle items met acties krijgen een kader"));	
+		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 2,"Acties:"));			
+		
+		SlideAction nextActn = ActionFactory.createAction(ActionTypes.ACTION_NEXT_PRESENTATION, "");
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Volgende slide", nextActn));	
+		SlideAction prevActn = ActionFactory.createAction(ActionTypes.ACTION_PREV_PRESENTATION, "");
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Vorige slide", prevActn));	
+		SlideAction beepActn = ActionFactory.createAction(ActionTypes.ACTION_SOUND, "");
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Beep", beepActn));	
+		SlideAction gotoActn = ActionFactory.createAction(ActionTypes.ACTION_GOTO_PRESENTATION, "1");
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Ga naar de eerste slide", gotoActn));
+		SlideAction openActn = ActionFactory.createAction(ActionTypes.ACTION_OPEN_PRESENTATION, "test.xml");
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Open test.xml", openActn));
+		
+		presentation.addSlide(slide);		
+		
+		slide = SlideFactory.createSlide();
+		slide.setTitle("De vierde slide");
 		
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 1,"Om een nieuwe presentatie te openen,"));	
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 2,"gebruik File->Open uit het menu."));		

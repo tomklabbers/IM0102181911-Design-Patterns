@@ -123,7 +123,6 @@ public class XMLSerializer implements Serializer{
 					// Retrieve SlideItem attributes
 					NamedNodeMap attributes = itemEl.getAttributes();
 
-					System.out.println(itemEl.getNodeName());
 					if (itemEl.getNodeName().equals(ACTION)) {
 						String name = getTextAttr(attributes, NAME);
 						String value = "";
@@ -138,15 +137,12 @@ public class XMLSerializer implements Serializer{
 						int level 	= getNumberAttr(attributes, LEVEL);
 						String type 	= getTextAttr(attributes, KIND);
 						SlideItem item = SlideItemFactory.createSlideItem(type);
-						if(prevAction != null) {
-							item.setAction(prevAction);
-						}
-						if (item != null) {
-							item.setStyle(StyleFactory.createStyle(item.getType(), prevAction != null, level));
-						}
-						prevAction = null;
 						// Only continue populating SlideItem if type is supported
 						if(item != null) {
+							if(prevAction != null) {
+								item.setAction(prevAction);
+							}							
+							item.setStyle(StyleFactory.createStyle(item.getType(), prevAction != null, level));							
 							item.setValue(itemEl.getTextContent());
 							
 							// Add SlideItem to the parent Slide
@@ -154,7 +150,8 @@ public class XMLSerializer implements Serializer{
 						}
 						else {
 							System.err.println("Invalid SlideItem in XML file with type: "+type);
-						}						
+						}	
+						prevAction = null;
 					}				
 				}
 				

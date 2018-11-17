@@ -22,7 +22,7 @@ public abstract class ActionDecorator implements SlideAction {
 	}
 	
 	/**
-	 * Set the action 
+	 * Set the next action 
 	 */
 	@Override
 	public void setAction(SlideAction action) {

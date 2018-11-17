@@ -48,7 +48,7 @@ public class PresentationModel implements Presentation {
 
 	@Override
 	public boolean goToSlide(int index) {
-		if(index > 0 &&
+		if(index >= 0 &&
 		   index < slides.size() &&
 		   index != currentSlideIndex) {
 			currentSlideIndex = index;
