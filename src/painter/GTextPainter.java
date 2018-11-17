@@ -64,7 +64,8 @@ class GTextPainter extends GraphicsPainter {
 			g2d.setColor(fontstyle.getFontColor());
 			Iterator<TextLayout> it = layouts.iterator();
 			int maxWidth = 0;
-			int xPos = location.x;
+			int xPos = pen.x;
+			int yPos = pen.y + scale(item.getStyle().getLeading());
 			while (it.hasNext()) {
 				TextLayout layout = it.next();
 				int textWidth = (int) layout.getBounds().getWidth();
@@ -82,14 +83,14 @@ class GTextPainter extends GraphicsPainter {
 						break;
 				}
 				
-				pen.y += layout.getAscent();
-				layout.draw(g2d, xPos, pen.y);
-				pen.y += layout.getDescent();
+				yPos += layout.getAscent();
+				layout.draw(g2d, xPos, yPos);
+				yPos += layout.getDescent();
 				
 				// Find the widest text line
 				maxWidth = Math.max(maxWidth, textWidth);
 			}
-			return new Rectangle(xPos, location.y, maxWidth, pen.y - location.y);
+			return new Rectangle(xPos, location.y, maxWidth, yPos - location.y);
 		}
 		else {
 			return location;

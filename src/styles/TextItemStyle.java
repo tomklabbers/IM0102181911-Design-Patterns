@@ -13,6 +13,7 @@ public class TextItemStyle extends SlideItemStyle implements FontStyle {
 			fontsize = 48;
 		else {
 			fontsize = 32;
+			
 		}		
 		font = new Font(FONTNAME, Font.BOLD, fontsize);
 	}	

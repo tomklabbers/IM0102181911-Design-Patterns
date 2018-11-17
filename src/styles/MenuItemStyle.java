@@ -9,6 +9,7 @@ public class MenuItemStyle extends SlideItemStyle implements FontStyle {
 		super(lvl);
 		
 		setAlignment(Alignment.RIGHT);
+		setLeading(0);
 	}
 
 	@Override

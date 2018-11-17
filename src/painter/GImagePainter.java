@@ -19,9 +19,10 @@ class GImagePainter extends GraphicsPainter {
 	public Rectangle draw(SlideItem item, Rectangle location) {
 		if (item instanceof SlideItemImageValue) {
 			SlideItemImageValue value = (SlideItemImageValue) item;
-			Rectangle result = new Rectangle(location.x, location.y, value.getImage().getWidth(observer) ,value.getImage().getHeight(observer));
+			Rectangle result = new Rectangle(location.x, location.y , value.getImage().getWidth(observer) ,value.getImage().getHeight(observer));
 			result.width = scale(result.width);
 			result.height = scale(result.height);
+			int leading = scale(item.getStyle().getLeading());
 			
 			switch(item.getStyle().getAlignment()) {
 				case RIGHT:
@@ -34,7 +35,7 @@ class GImagePainter extends GraphicsPainter {
 				default:
 					//no changes, default behavior
 			}
-			getCanvas().drawImage(value.getImage(),result.x, result.y, result.width, result.height, observer);
+			getCanvas().drawImage(value.getImage(),result.x, result.y + leading, result.width, result.height - leading, observer);
 			return result;
 		}
 		else {
