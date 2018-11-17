@@ -3,6 +3,7 @@ package styles;
 import java.awt.Color;
 
 public interface BorderStyle {
-	public int getBorderStrokeWidth();
-	public Color getBorderColor();
+	public int getStrokeSize();
+	public int getPadding();
+	public Color getStrokeColor();
 }

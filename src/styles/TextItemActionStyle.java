@@ -4,7 +4,8 @@ import java.awt.Color;
 
 class TextItemActionStyle extends TextItemStyle implements FontStyle, BorderStyle{
 	private static Color borderColor = Color.black;
-	private static int strokeWidth = 3;
+	private static int strokeSize = 3;
+	private static int padding = 5;
 	
 	public TextItemActionStyle(int lvl) {
 		super(lvl);
@@ -13,12 +14,17 @@ class TextItemActionStyle extends TextItemStyle implements FontStyle, BorderStyl
 	}
 	
 	@Override
-	public Color getBorderColor() {
+	public Color getStrokeColor() {
 		return borderColor;
 	}
 	
 	@Override
-	public int getBorderStrokeWidth() {
-		return Math.round(strokeWidth);
+	public int getStrokeSize() {
+		return strokeSize;
+	}
+
+	@Override
+	public int getPadding() {
+		return padding;
 	}
 }

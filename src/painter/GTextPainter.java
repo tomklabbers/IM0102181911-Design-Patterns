@@ -47,51 +47,53 @@ class GTextPainter extends GraphicsPainter {
 	 * @return Returns rectangle of text dimensions
 	 */
 	@Override
-	public Rectangle draw(SlideItem item, Rectangle location) {
+	public Rectangle draw(SlideItem item, Rectangle drawArea) {
 		if (item != null && (item instanceof SlideItemTextValue) && (item.getStyle() instanceof FontStyle)) {
 			SlideItemTextValue value = (SlideItemTextValue) item;
-			FontStyle fontstyle = (FontStyle) item.getStyle();
-			if ( value.getValue() == null || value.getValue().length() == 0) {
-				return location;
-			}
-			List<TextLayout> layouts = getLayouts(value.getValue(), getCanvas(), fontstyle, location.getBounds().width);
-			Point pen = location.getBounds().getLocation();
 			
+			FontStyle fontstyle = (FontStyle) item.getStyle();
 			Graphics2D g2d = (Graphics2D)getCanvas();
 			g2d.setFont(fontstyle.getFont(getScale()));
 			g2d.setColor(fontstyle.getFontColor());
+			
+			List<TextLayout> layouts = getLayouts(value.getValue(), getCanvas(), fontstyle, drawArea.width);
 			Iterator<TextLayout> it = layouts.iterator();
+			
+			Point pen = new Point(drawArea.x, drawArea.y + scale(item.getStyle().getLeading()));
+			
+			int yStart = pen.y; // Store original y position to calculate height after draw
+			int indentation = scale(item.getStyle().getIndent());
 			int maxWidth = 0;
-			int xPos = pen.x;
-			int yPos = pen.y + scale(item.getStyle().getLeading());
+			
 			while (it.hasNext()) {
 				TextLayout layout = it.next();
-				int textWidth = (int) layout.getBounds().getWidth();
+				int textWidth = (int)layout.getBounds().getWidth();
 				
 				switch(item.getStyle().getAlignment()) {
 					case RIGHT:
-						xPos = location.width - textWidth;
+						pen.x = (drawArea.width - textWidth) - indentation;
 						break;
 					case CENTER:
-						xPos = pen.x + ((location.width - textWidth)/2);
+						pen.x = ((drawArea.width - textWidth)/2);
 						break;
 					case LEFT:
 					default:
-						xPos = pen.x;
+						pen.x = drawArea.x + indentation;
 						break;
 				}
 				
-				yPos += layout.getAscent();
-				layout.draw(g2d, xPos, yPos);
-				yPos += layout.getDescent();
+				pen.y += layout.getAscent();
+				layout.draw(g2d, pen.x, pen.y);
+				pen.y += layout.getDescent();
 				
 				// Find the widest text line
 				maxWidth = Math.max(maxWidth, textWidth);
 			}
-			return new Rectangle(xPos, location.y, maxWidth, yPos - location.y);
+
+			return new Rectangle(pen.x, yStart, maxWidth, pen.y - yStart);
 		}
 		else {
-			return location;
+			return drawArea;
 		}
 	}
 }

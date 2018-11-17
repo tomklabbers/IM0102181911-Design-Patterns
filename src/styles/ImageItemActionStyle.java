@@ -4,26 +4,27 @@ import java.awt.Color;
 
 class ImageItemActionStyle extends SlideItemStyle implements BorderStyle{
 	private static Color borderColor = Color.BLUE;
-	private static int strokeWidth = 5;
+	private static int strokeSize = 5;
+	private static int padding = 0;
 	public ImageItemActionStyle(int lvl) {
 		super(lvl);
 		
 		setAlignment(Alignment.LEFT);
 	}
-	@Override
-	public int getIndent() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 	@Override
-	public Color getBorderColor() {
+	public Color getStrokeColor() {
 		return borderColor;
 	}
 	
 	@Override
-	public int getBorderStrokeWidth() {
-		return strokeWidth;
+	public int getStrokeSize() {
+		return strokeSize;
+	}
+
+	@Override
+	public int getPadding() {
+		return padding;
 	}
 
 }

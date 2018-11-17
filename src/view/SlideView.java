@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,7 @@ import styles.BorderStyle;
 public class SlideView extends JComponent {
 	
 	private static final long serialVersionUID = 1L;
-	private static final int itemSpacing = 4;
+	
 	private static final int yMargin 	= 20;
 	private static final int xMargin 	= 20;
 	
@@ -39,9 +40,13 @@ public class SlideView extends JComponent {
 		repaint();
 	}
 	
+	private Point getRealXY(int x, int y) {
+		return new Point(x - xMargin, y - yMargin);
+	}
+	
 	public SlideItem getItemAtPos(int x, int y) {
 		for (Map.Entry<Rectangle, SlideItem> item : itemLookup.entrySet()) {
-			if (item.getKey().contains(x, y)) {
+			if (item.getKey().contains(getRealXY(x, y))) {
 				return item.getValue();
 			}
 		}
@@ -54,7 +59,7 @@ public class SlideView extends JComponent {
 	}
 	
 	public void drawSlide(Slide slide, PainterFactory factory) {
-		int y = itemSpacing;
+		int y = 0;
 		itemLookup = new HashMap<Rectangle, SlideItem>();
 		for (SlideItem item : slide.getItems()) {
 			SlidePainter painter = null;
@@ -70,29 +75,32 @@ public class SlideView extends JComponent {
 			if (painter == null) {
 				continue;
 			}
-			int x = painter.scale(item.getStyle().getIndent());
 			Rectangle location = null;
 			BorderStyle borderStyle = null;
 			
 			if (item.getStyle() instanceof BorderStyle) {
 				borderStyle = (BorderStyle)item.getStyle();
-				int strokeWidth = painter.scale(borderStyle.getBorderStrokeWidth());
-				location = new Rectangle(x + strokeWidth, y + strokeWidth, getDrawWidth() - x - strokeWidth , 0);
+				// Border scale!
+				int stroke 	= painter.scale(borderStyle.getStrokeSize());
+				int padding 	= painter.scale(borderStyle.getPadding());
+				
+				location = new Rectangle(0 + padding + stroke, y + padding + stroke, getDrawWidth(), 0);
 			}
 			else {
-				location = new Rectangle(x, y, getDrawWidth() - x, 0);
+				location = new Rectangle(0, y, getDrawWidth(), 0);
 			}
 			
 			Rectangle result = painter.draw(item, location);
-			itemLookup.put(result, item);
+
 			if(borderStyle != null) {			
-				SlidePainter borderpainter = factory.createBorderPainter();		
-				int strokeWidth = painter.scale(borderStyle.getBorderStrokeWidth());				
-				Rectangle borderLocation = new Rectangle(result.x,result.y, result.width + strokeWidth *2 , result.height + strokeWidth * 2);
-				result = borderpainter.draw(item, borderLocation);
+				SlidePainter borderpainter = factory.createBorderPainter();
+				result = borderpainter.draw(item, result);
 			}
+			
+			itemLookup.put(result, item);
+			
 			if (result != null) {
-				y += result.height + painter.scale(itemSpacing);
+				y = result.height + result.y ;
 			}						
 		}
 	}	
@@ -102,8 +110,7 @@ public class SlideView extends JComponent {
 		g.setColor(Color.WHITE);		
 		g.fillRect(0, 0, getSize().width, getSize().height);	
 		g.translate(xMargin, yMargin);
-		
-		
+
 		if(model != null) {
 			PainterFactory factory = AbstractPainterFactory.GraphicsPainter(g, this, getPreferredSize(), parentView.getDefaultSize());  			
 			drawSlide(model, factory);

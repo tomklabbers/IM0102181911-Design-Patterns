@@ -2,7 +2,6 @@ package painter;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.geom.Line2D;
 import java.awt.image.ImageObserver;
 
 import interfaces.SlideItemImageValue;
@@ -10,37 +9,46 @@ import slideitem.SlideItem;
 
 class GImagePainter extends GraphicsPainter {
 	private ImageObserver observer;
+	
 	public GImagePainter(Graphics canvas, float scale, ImageObserver observer) {
 		super(canvas, scale);
 		this.observer = observer;
 	}
 
 	@Override
-	public Rectangle draw(SlideItem item, Rectangle location) {
-		if (item instanceof SlideItemImageValue) {
+	public Rectangle draw(SlideItem item, Rectangle drawArea) {
+		if (item != null && item instanceof SlideItemImageValue) {
 			SlideItemImageValue value = (SlideItemImageValue) item;
-			Rectangle result = new Rectangle(location.x, location.y , value.getImage().getWidth(observer) ,value.getImage().getHeight(observer));
-			result.width = scale(result.width);
-			result.height = scale(result.height);
-			int leading = scale(item.getStyle().getLeading());
+			
+			// Scale the original draw area 
+			Rectangle scaledArea = new Rectangle();
+			
+			scaledArea.width = scale(value.getImage().getWidth(observer));
+			scaledArea.height = scale(value.getImage().getHeight(observer));
+			scaledArea.y = drawArea.y + scale(item.getStyle().getLeading());
+			
+			// Calculate the x position based on the item alignment
+			// Center align  is not affected by the indent style 
+			int indentation = scale(item.getStyle().getIndent());
 			
 			switch(item.getStyle().getAlignment()) {
 				case RIGHT:
-					result.x = location.width - result.width;
+					scaledArea.x = (drawArea.width - scaledArea.width) - indentation ;
 					break;
 				case CENTER:
-					result.x += ((location.width - result.width)/2);
+					scaledArea.x = ((drawArea.width - scaledArea.width)/2);
 					break;
 				case LEFT:
 				default:
-					//no changes, default behavior
+					scaledArea.x = drawArea.x + indentation;
 			}
-			getCanvas().drawImage(value.getImage(),result.x, result.y + leading, result.width, result.height - leading, observer);
-			return result;
+			
+			getCanvas().drawImage(value.getImage(), scaledArea.x, scaledArea.y, scaledArea.width, scaledArea.height, observer);
+			
+			return scaledArea;
 		}
 		else {
-			return null;
+			return drawArea;
 		}
 	}
-
 }
