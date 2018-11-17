@@ -1,8 +1,12 @@
 package actions;
 
 import java.awt.Toolkit;
-
 import interfaces.PresentationControlActions;
+
+/**
+ * Action that beeps on execution
+ *
+ */
 
 class SystemBeepAction extends ActionDecorator {
 
