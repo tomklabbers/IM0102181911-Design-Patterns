@@ -20,8 +20,8 @@ public class SlideView extends JComponent {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final int yMargin 	= 20;
-	private static final int xMargin 	= 20;
+	private static final int yMargin 	= 10;
+	private static final int xMargin 	= 0;
 	
 	private Slide model;
 	private Map<Rectangle, SlideItem> itemLookup;

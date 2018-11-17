@@ -38,6 +38,7 @@ public class MenuController extends MenuBar {
 	protected static final String GOTO = "Go to";
 	protected static final String HELP = "Help";
 	protected static final String NEW = "New";
+	protected static final String DEMO = "Demo";
 	protected static final String NEXT = "Next";
 	protected static final String OPEN = "Open";
 	protected static final String PAGENR = "Page number?";
@@ -101,6 +102,13 @@ public class MenuController extends MenuBar {
 		            System.out.println("Save command cancelled by user.");
 		        }
 				
+			}
+		});
+		
+		fileMenu.add(menuItem = mkMenuItem(DEMO));
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.open(""); // Open Demo
 			}
 		});
 		

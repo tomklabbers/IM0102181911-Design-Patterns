@@ -19,7 +19,12 @@ class MenuItemStyle extends SlideItemStyle implements FontStyle {
 
 	@Override
 	public int getSize() {
-		return 10;
+		return 11;
+	}
+	
+	@Override
+	public int getIndent() {
+		return 50;
 	}
 
 	@Override

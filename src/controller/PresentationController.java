@@ -53,6 +53,11 @@ public class PresentationController implements PresentationControlActions{
 		PresentationReader reader = AccessorFactory.createReader(path);
 		
 		setModel(PresentationFactory.createPresentation(reader));
+		
+		// Show file path in title 
+		if( path != null && !path.isEmpty() ) {
+			view.setTitle(view.getTitle() + " - " + path);
+		}
 	}
 	
 	public void open() {
