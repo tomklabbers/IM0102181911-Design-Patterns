@@ -6,6 +6,11 @@ import java.io.PrintWriter;
 
 import interfaces.Presentation;
 
+/**
+ * LocalFileWriter allows to save a presentation to a local file.
+ * The serializer is used to create the file content.
+ *
+ */
 public class LocalFileWriter extends accessor.FileWriter {
 	
 	public void save(Presentation p) {

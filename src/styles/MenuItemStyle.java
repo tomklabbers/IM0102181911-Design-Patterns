@@ -3,7 +3,7 @@ package styles;
 import java.awt.Color;
 import java.awt.Font;
 
-public class MenuItemStyle extends SlideItemStyle implements FontStyle {
+class MenuItemStyle extends SlideItemStyle implements FontStyle {
 
 	public MenuItemStyle(int lvl) {
 		super(lvl);

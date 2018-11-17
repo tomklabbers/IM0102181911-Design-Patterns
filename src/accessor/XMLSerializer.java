@@ -25,6 +25,11 @@ import slideitem.SlideItem;
 import slideitem.SlideItemFactory;
 import styles.StyleFactory;
 
+/**
+ * XMLSerializer allows to read or write a presentation from or to a XML source
+ *
+ */
+
 public class XMLSerializer implements Serializer{
 	
 	/** Default API to use. */
@@ -45,14 +50,27 @@ public class XMLSerializer implements Serializer{
     
     private Element dom;
     
+    /**
+     * Retrieve content of XML element by tagname
+     * @param element
+     * @param tagName
+     * @return content of element
+     */
+    
     private String getElementContent(Element element, String tagName) {
     		NodeList nodes = element.getElementsByTagName(tagName);
     		return nodes.item(0).getTextContent();
     }
     
+    /**
+     * Retrieve a numeric value of an attribute 
+     * @param nnm node map
+     * @param attrName Name of attribute
+     * @return integer value of attribute
+     */
     private int getNumberAttr(NamedNodeMap nnm, String attrName) {
-    		String text = nnm.getNamedItem(attrName).getTextContent();
-    		int num = 0;
+		String text = nnm.getNamedItem(attrName).getTextContent();
+		int num = 0;
 		if (text != null) {
 			try {
 				num = Integer.parseInt(text);
@@ -63,11 +81,20 @@ public class XMLSerializer implements Serializer{
 		}
 		return num;
     }
-    
+
+    /**
+     * Retrieve a text value of an attribute
+     * @param nnm node map
+     * @param attrName Name of attribute
+     * @return text value of attribute
+     */    
     private String getTextAttr(NamedNodeMap nnm, String attrName) {
 		return nnm.getNamedItem(attrName).getTextContent();
     }
 
+    /**
+     * Unserialize an inputstream to a presentation
+     */
 	@Override
 	public void unserialize(InputStream in, Presentation presentation) {
 		int slideIndex, itemIndex;
@@ -145,6 +172,9 @@ public class XMLSerializer implements Serializer{
 		}
 	}
 	
+	/**
+	 * Serialize the presentation content to a PrintWriter
+	 */
 	@Override
 	public void serialize(PrintWriter out, Presentation p) {
 		out.println("<?xml version=\"1.0\"?>");
@@ -168,17 +198,17 @@ public class XMLSerializer implements Serializer{
 			for (int itemIndex = 0; itemIndex < slideItems.size(); itemIndex++) {
 				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemIndex);
 				out.print("<item kind="); 
-//				if (slideItem instanceof SlideItemTextValue) {
-//					out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");
-//					out.print(slideItem.getRawValue());
-//				}
-//				else if (slideItem instanceof SlideItemImageValue) {
-//					out.print("\"image\" level=\"" + slideItem.getLevel() + "\">");
-//					out.print(slideItem.getRawValue());
-//				}
-//				else {
-//					System.out.println("Ignoring " + slideItem);
-//				}
+				if (slideItem instanceof SlideItemTextValue) {
+					out.print("\"text\" level=\"" + slideItem.getStyle().getLevel() + "\">");
+					out.print(slideItem.getRawValue());
+				}
+				else if (slideItem instanceof SlideItemImageValue) {
+					out.print("\"image\" level=\"" + slideItem.getStyle().getLevel() + "\">");
+					out.print(slideItem.getRawValue());
+				}
+				else {
+					System.out.println("Ignoring " + slideItem);
+				}
 //				
 				out.println("</item>");
 			}

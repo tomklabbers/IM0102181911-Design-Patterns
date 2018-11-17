@@ -7,7 +7,7 @@ import interfaces.PresentationControlActions;
 class SystemBeepAction extends ActionDecorator {
 
 	@Override
-	public void executeAction(PresentationControlActions controlActions) {
+	public void doExecuteAction(PresentationControlActions controlActions) {
 		Toolkit.getDefaultToolkit().beep();	
 	}
 

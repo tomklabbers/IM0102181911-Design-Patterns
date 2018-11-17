@@ -2,9 +2,14 @@ package actions;
 
 public class ActionFactory {
 	
-	
-	public static SlideAction createAction(String type, String value) {
-		switch (ActionTypes.getActionType(type)) {
+	/**
+	 * Create an action by the specified type	
+	 * @param type Action type
+	 * @param value optional action value
+	 * @return Action
+	 */
+	public static SlideAction createAction(ActionTypes type, String value) {
+		switch (type) {
 		case ACTION_SOUND:
 			return new SystemBeepAction();
 		case ACTION_OPEN_PRESENTATION:
@@ -19,4 +24,15 @@ public class ActionFactory {
 			return null;
 		}
 	}
+	
+	/**
+	 * Create an action by the specified type	
+	 * @param name Name of action type
+	 * @param value optional action value
+	 * @return Action
+	 */	
+	public static SlideAction createAction(String name, String value) {
+		return createAction(ActionTypes.getActionType(name), value);
+	}
+	
 }

@@ -46,7 +46,15 @@ public abstract class SlideItemStyle {
 	}
 	
 	public int getIndent() {
-		return level * 20;
+		if (getLevel() == 0) {
+			return 0;
+		}
+		else if (getLevel() == 1) {
+			return 20;
+		}
+		else {
+			return (getLevel() * 20) + 10;
+		}
 	}
 	
 }

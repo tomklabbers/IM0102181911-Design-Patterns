@@ -1,11 +1,8 @@
 package styles;
 
 import java.awt.Color;
-import java.awt.Font;
 
-import styles.SlideItemStyle.Alignment;
-
-public class TextItemActionStyle extends TextItemStyle implements FontStyle, BorderStyle{
+class TextItemActionStyle extends TextItemStyle implements FontStyle, BorderStyle{
 	private static Color borderColor = Color.black;
 	private static int strokeWidth = 3;
 	

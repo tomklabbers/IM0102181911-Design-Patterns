@@ -6,8 +6,12 @@ import interfaces.Presentation;
 import interfaces.Slide;
 import slideitem.SlideItem;
 
-public class DemoWriter implements PresentationWriter {
+/**
+ * Write presentation content to System.out
+ *
+ */
 
+public class DemoWriter implements PresentationWriter {
 	@Override
 	public void save(Presentation presentation) {
 		System.out.println("Presentation: "+presentation.getTitle());

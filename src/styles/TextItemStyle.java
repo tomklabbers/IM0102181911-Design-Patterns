@@ -3,7 +3,7 @@ package styles;
 import java.awt.Color;
 import java.awt.Font;
 
-public class TextItemStyle extends SlideItemStyle implements FontStyle {
+class TextItemStyle extends SlideItemStyle implements FontStyle {
 	private static final String FONTNAME = "Helvetica";
 	private Font font;
 	private int fontsize;
@@ -17,16 +17,6 @@ public class TextItemStyle extends SlideItemStyle implements FontStyle {
 		}		
 		font = new Font(FONTNAME, Font.BOLD, fontsize);
 	}	
-	
-	@Override
-	public int getIndent() {
-		if (getLevel() == 0) {
-			return 0;
-		}
-		else {
-			return getLevel() * 20 + 10;
-		}
-	}
 	
 	@Override
 	public Font getFont(float scale) {

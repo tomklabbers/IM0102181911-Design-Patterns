@@ -22,7 +22,7 @@ public class StyleFactory {
 				return new ImageItemStyle(level);
 			}
 		default:
-			return null;
+			return new DefaultStyle(level);
 		}
 	}
 }

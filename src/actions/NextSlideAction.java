@@ -5,7 +5,7 @@ import interfaces.PresentationControlActions;
 public class NextSlideAction extends ActionDecorator {
 
 	@Override
-	public void executeAction(PresentationControlActions controlActions) {
+	public void doExecuteAction(PresentationControlActions controlActions) {
 		controlActions.nextSlide();
 	}
 
