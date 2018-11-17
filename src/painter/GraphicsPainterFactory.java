@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
+import slideitem.SlideItemTypes;
+
 class GraphicsPainterFactory implements PainterFactory {
 	private Graphics canvas;
 	private float scale;
@@ -27,5 +29,19 @@ class GraphicsPainterFactory implements PainterFactory {
 	@Override
 	public SlidePainter createBorderPainter() {
 		return new GBorderPainter(canvas, scale);
+	}
+	
+	@Override
+	public SlidePainter getPainter(SlideItemTypes type) {
+		switch (type) {
+			case ITEM_MENU:
+			case ITEM_TEXT:
+				return createTextPainter();				
+			case ITEM_IMAGE:
+				return createImagePainter();
+			case ITEM_UNKNOWN:
+			default:
+				return null;
+		}
 	}
 }

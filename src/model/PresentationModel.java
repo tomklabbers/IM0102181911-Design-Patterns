@@ -59,7 +59,11 @@ public class PresentationModel implements Presentation {
 
 	@Override
 	public Slide getCurrentSlide() {
-		return slides.elementAt(currentSlideIndex);
+		if(slides.size() > 0) {
+			return slides.elementAt(currentSlideIndex);
+		}
+		
+		return null;
 	}
 
 	@Override

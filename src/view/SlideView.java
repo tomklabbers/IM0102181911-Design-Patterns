@@ -40,6 +40,12 @@ public class SlideView extends JComponent {
 		repaint();
 	}
 	
+	public void clear() {
+		model = null;
+		
+		repaint();
+	}
+	
 	private Point getRealXY(int x, int y) {
 		return new Point(x - xMargin, y - yMargin);
 	}
@@ -62,16 +68,8 @@ public class SlideView extends JComponent {
 		int y = 0;
 		itemLookup = new HashMap<Rectangle, SlideItem>();
 		for (SlideItem item : slide.getItems()) {
-			SlidePainter painter = null;
-			switch (item.getType()) {
-				case ITEM_MENU:
-				case ITEM_TEXT:
-					painter = factory.createTextPainter();
-					break;				
-				case ITEM_IMAGE:
-					painter = factory.createImagePainter();
-					break;
-			}	
+			SlidePainter painter = factory.getPainter(item.getType());
+				
 			if (painter == null) {
 				continue;
 			}
