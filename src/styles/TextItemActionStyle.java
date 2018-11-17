@@ -9,8 +9,6 @@ class TextItemActionStyle extends TextItemStyle implements FontStyle, BorderStyl
 	
 	public TextItemActionStyle(int lvl) {
 		super(lvl);
-		
-		setAlignment(Alignment.LEFT);
 	}
 	
 	@Override
