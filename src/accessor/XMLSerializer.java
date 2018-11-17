@@ -17,13 +17,13 @@ import org.xml.sax.SAXException;
 import actions.ActionFactory;
 import actions.ActionTypes;
 import actions.SlideAction;
-import factory.SlideFactory;
-import interfaces.Presentation;
-import interfaces.Slide;
-import interfaces.SlideItemImageValue;
-import interfaces.SlideItemTextValue;
+import model.Presentation;
+import model.Slide;
+import model.SlideFactory;
 import slideitem.SlideItem;
 import slideitem.SlideItemFactory;
+import slideitem.SlideItemImageValue;
+import slideitem.SlideItemTextValue;
 import styles.StyleFactory;
 
 /**

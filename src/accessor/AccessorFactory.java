@@ -1,15 +1,4 @@
-package factory;
-
-import accessor.LocalFileReader;
-import accessor.LocalFileWriter;
-import accessor.DemoReader;
-import accessor.DemoWriter;
-import accessor.FileReader;
-import accessor.FileWriter;
-import accessor.PresentationReader;
-import accessor.PresentationWriter;
-import accessor.Serializer;
-import accessor.XMLSerializer;
+package accessor;
 
 public class AccessorFactory {
 	

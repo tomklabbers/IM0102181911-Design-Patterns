@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-import interfaces.SlideItemImageValue;
 import java.io.IOException;
 
 /** <p>De klasse voor een Bitmap item</p>

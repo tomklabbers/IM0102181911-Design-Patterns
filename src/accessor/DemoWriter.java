@@ -2,8 +2,8 @@ package accessor;
 
 import java.util.Vector;
 
-import interfaces.Presentation;
-import interfaces.Slide;
+import model.Presentation;
+import model.Slide;
 import slideitem.SlideItem;
 
 /**

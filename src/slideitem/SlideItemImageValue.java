@@ -1,4 +1,4 @@
-package interfaces;
+package slideitem;
 
 import java.awt.Image;
 

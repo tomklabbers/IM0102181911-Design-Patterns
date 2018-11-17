@@ -2,7 +2,6 @@ package model;
 
 import java.util.Vector;
 
-import interfaces.Slide;
 import slideitem.SlideItem;
 import slideitem.SlideItemFactory;
 import slideitem.SlideItemTypes;

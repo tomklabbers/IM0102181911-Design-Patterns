@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import interfaces.Presentation;
+import model.Presentation;
 
 /**
  * LocalFileWriter allows to save a presentation to a local file.

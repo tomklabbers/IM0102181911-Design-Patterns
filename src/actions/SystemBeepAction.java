@@ -1,7 +1,8 @@
 package actions;
 
 import java.awt.Toolkit;
-import interfaces.PresentationControlActions;
+
+import controller.PresentationControlActions;
 
 /**
  * Action that beeps on execution

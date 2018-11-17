@@ -1,7 +1,4 @@
-package factory;
-
-import interfaces.Slide;
-import model.SlideModel;
+package model;
 
 /**
  * SlideFactory creates slide

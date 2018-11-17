@@ -1,7 +1,5 @@
 package slideitem;
 
-import interfaces.SlideItemMenuItemValue;
-
 public class SlideItemFactory {
 	
 	/**

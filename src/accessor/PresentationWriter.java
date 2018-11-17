@@ -1,6 +1,6 @@
 package accessor;
 
-import interfaces.Presentation;
+import model.Presentation;
 
 /**
  * PresentationWriter interface used to save a presentation

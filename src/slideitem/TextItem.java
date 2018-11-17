@@ -1,7 +1,5 @@
 package slideitem;
 
-import interfaces.SlideItemTextValue;
-
 /** <p>Een tekst item.</p>
  * <p>Een TextItem heeft tekenfunctionaliteit.</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman

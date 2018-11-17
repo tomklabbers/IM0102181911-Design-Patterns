@@ -2,9 +2,6 @@ package model;
 
 import java.util.Vector;
 
-import interfaces.Presentation;
-import interfaces.Slide;
-
 
 public class PresentationModel implements Presentation {
 	String title = "untitled";

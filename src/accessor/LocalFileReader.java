@@ -2,9 +2,11 @@ package accessor;
 
 import java.io.File;
 import java.io.InputStream;
+
+import model.Presentation;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import interfaces.Presentation;
 
 public class LocalFileReader extends FileReader {
 	

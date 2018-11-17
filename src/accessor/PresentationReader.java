@@ -1,6 +1,6 @@
 package accessor;
 
-import interfaces.Presentation;
+import model.Presentation;
 
 /**
  * PresentationReader interface used to load a presentation

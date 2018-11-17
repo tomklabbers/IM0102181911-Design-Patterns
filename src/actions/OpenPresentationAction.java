@@ -1,6 +1,6 @@
 package actions;
 
-import interfaces.PresentationControlActions;
+import controller.PresentationControlActions;
 
 /**
  * Action that allows to open a specified presentation

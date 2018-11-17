@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
-import interfaces.SlideItemTextValue;
 import slideitem.SlideItem;
+import slideitem.SlideItemTextValue;
 import styles.FontStyle;
 
 class GTextPainter extends GraphicsPainter {	

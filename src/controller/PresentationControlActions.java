@@ -1,4 +1,4 @@
-package interfaces;
+package controller;
 
 public interface PresentationControlActions {
 	public void goToSlide(int index);

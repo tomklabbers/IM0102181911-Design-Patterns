@@ -1,6 +1,6 @@
 package actions;
 
-import interfaces.PresentationControlActions;
+import controller.PresentationControlActions;
 
 public interface SlideAction {
 	public void executeAction(PresentationControlActions controlActions);

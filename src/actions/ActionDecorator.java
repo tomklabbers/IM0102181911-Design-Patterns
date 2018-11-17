@@ -1,6 +1,6 @@
 package actions;
 
-import interfaces.PresentationControlActions;
+import controller.PresentationControlActions;
 
 public abstract class ActionDecorator implements SlideAction {
 	private SlideAction nextAction = null;

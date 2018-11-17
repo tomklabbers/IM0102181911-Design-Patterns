@@ -9,7 +9,7 @@ import java.util.Map;
 import java.awt.Color;
 import javax.swing.JComponent;
 
-import interfaces.Slide;
+import model.Slide;
 import painter.AbstractPainterFactory;
 import painter.PainterFactory;
 import painter.SlidePainter;

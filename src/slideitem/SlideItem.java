@@ -2,7 +2,7 @@ package slideitem;
 
 import actions.ActionTypes;
 import actions.SlideAction;
-import interfaces.PresentationControlActions;
+import controller.PresentationControlActions;
 import styles.SlideItemStyle;
 
 /** <p>De abstracte klasse voor een item op een Slide<p>

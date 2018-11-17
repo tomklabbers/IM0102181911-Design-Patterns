@@ -1,8 +1,5 @@
 package slideitem;
 
-import interfaces.SlideItemMenuItemValue;
-import interfaces.SlideItemTextValue;
-
 class MenuItem extends SlideItem implements SlideItemTextValue, SlideItemMenuItemValue {
 	
 	private int currentIndex;

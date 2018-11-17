@@ -1,7 +1,7 @@
 package controller;
 
-import interfaces.Presentation;
-import interfaces.Slide;
+import model.Presentation;
+import model.Slide;
 import view.SlideView;
 
 public class SlideController {

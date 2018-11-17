@@ -3,7 +3,7 @@ package accessor;
 import java.io.InputStream;
 import java.io.PrintWriter;
 
-import interfaces.Presentation;
+import model.Presentation;
 
 /**
  * Serializer interface used to fill or read a presentation from a source

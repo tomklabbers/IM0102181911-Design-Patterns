@@ -1,8 +1,6 @@
-package factory;
+package model;
 
-import model.PresentationModel;
 import accessor.PresentationReader;
-import interfaces.Presentation;
 
 /**
  * PresentationFactory

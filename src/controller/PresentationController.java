@@ -4,13 +4,13 @@ import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import accessor.AccessorFactory;
 import accessor.PresentationReader;
 import accessor.PresentationWriter;
 import actions.SlideAction;
-import factory.PresentationFactory;
-import factory.AccessorFactory;
 import view.PresentationView;
-import interfaces.*;
+import model.Presentation;
+import model.PresentationFactory;
 
 public class PresentationController implements PresentationControlActions{
 	private PresentationView view;

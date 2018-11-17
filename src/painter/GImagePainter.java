@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 
-import interfaces.SlideItemImageValue;
 import slideitem.SlideItem;
+import slideitem.SlideItemImageValue;
 
 class GImagePainter extends GraphicsPainter {
 	private ImageObserver observer;
