@@ -219,18 +219,17 @@ public class XMLSerializer implements Serializer{
 			for (int itemIndex = 0; itemIndex < slideItems.size(); itemIndex++) {
 				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemIndex);
 				SlideAction action = slideItem.getAction();
-				if (action != null) {
-					while (action != null) {
-						out.print(String.format("<action name=\"%s\" value=\"%s\">", 
-								ActionTypes.getActionName(action.getActionType()),
-								action.getActionValue()));
-						serializeItem(out, slideItem);
-						out.print("</action>"); 					
-						action = action.getAction();
-					}
+				while (action != null) {
+					out.println(String.format("<action name=\"%s\" value=\"%s\">", 
+							ActionTypes.getActionName(action.getActionType()),
+							action.getActionValue()));				
+					action = action.getAction();
 				}
-				else {
-					serializeItem(out, slideItem);
+				serializeItem(out, slideItem);
+				action = slideItem.getAction();				
+				while (action != null) {
+					out.println("</action>");
+					action = action.getAction();
 				}
 				
 			}
