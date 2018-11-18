@@ -4,7 +4,6 @@ package accessor;
  * FileReader allows to access a file. Needs a Serializer to process the data
  *
  */
-
 public abstract class FileReader implements PresentationReader, Accessor {
 	private Serializer serializer;	
 	private String path;

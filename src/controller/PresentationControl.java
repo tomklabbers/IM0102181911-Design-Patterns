@@ -5,6 +5,9 @@ import java.awt.Frame;
 import model.Presentation;
 import view.PresentationView;
 
+/**
+ * Interface for a presentation controller
+ */
 public interface PresentationControl {
 	public void goToSlide(int index);
 	public void prevSlide();

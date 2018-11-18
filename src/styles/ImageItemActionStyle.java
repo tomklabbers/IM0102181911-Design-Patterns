@@ -2,10 +2,14 @@ package styles;
 
 import java.awt.Color;
 
+/**
+ * Style for images with an action
+ */
 class ImageItemActionStyle extends SlideItemStyle implements BorderStyle{
-	private static Color borderColor = Color.BLUE;
-	private static int strokeSize = 5;
+	private static Color borderColor = Color.GREEN;
+	private static int strokeSize = 8;
 	private static int padding = 0;
+	
 	public ImageItemActionStyle(int lvl) {
 		super(lvl);
 		

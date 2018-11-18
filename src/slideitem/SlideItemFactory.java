@@ -3,8 +3,9 @@ package slideitem;
 public class SlideItemFactory {
 	
 	/**
+	 * Create a slide item based on the type (Uses the enumeration)
 	 * 
-	 * @param type 
+	 * @param type SlideItemType
 	 * @return
 	 */
 	public static SlideItem createSlideItem(SlideItemTypes type) {		
@@ -20,10 +21,23 @@ public class SlideItemFactory {
 		}
 	}
 	
+	/**
+	 * Create a slide item based on the type
+	 * 
+	 * @param type String the type as String 
+	 * @return
+	 */
 	public static SlideItem createSlideItem(String type) {
 		return createSlideItem(SlideItemTypes.getSlideItemType(type));
 	}
 	
+	/**
+	 * Create a menu item. This is a special item.
+	 * 
+	 * @param currentIndex
+	 * @param maxIndex
+	 * @return
+	 */
 	public static SlideItem createMenuItem(int currentIndex, int maxIndex) {
 		SlideItem item = createSlideItem(SlideItemTypes.ITEM_MENU);	
 		if (item instanceof SlideItemMenuItemValue) {

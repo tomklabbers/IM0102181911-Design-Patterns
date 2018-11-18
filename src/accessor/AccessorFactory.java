@@ -1,7 +1,11 @@
 package accessor;
 
 public class AccessorFactory {
-	
+	/**
+	 * Create a presentation reader to load a presentation
+	 * @param path
+	 * @return
+	 */
 	public static PresentationReader createReader(String path) {
 		if(path != null && !path.isEmpty() ) {
 			FileReader reader = new LocalFileReader();
@@ -22,10 +26,17 @@ public class AccessorFactory {
 			return reader;
 		}
 		else {
+			// No input path was given, load the demo presentation
 			return new DemoReader();
 		}
 	}
 	
+	/**
+	 * Create a presentation writer to save a presentation.
+	 * 
+	 * @param path
+	 * @return
+	 */
 	public static PresentationWriter createWriter(String path) {
 		if(path != null && !path.isEmpty() ) {
 			FileWriter writer = new LocalFileWriter();
@@ -37,10 +48,19 @@ public class AccessorFactory {
 			return writer;
 		}
 		else {
+			// No output path was given, use the demo writer
 			return new DemoWriter();
 		}
 	}
 	
+	/**
+	 * Use the given path to determine the serializer. The file
+	 * extension is used to load the serializer instance.
+	 * 
+	 * @param path
+	 * 
+	 * @return
+	 */
 	private static Serializer getSerializer(String path) {
 		// Determine serializer variant
 		switch(getFileExtension(path)) {

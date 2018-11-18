@@ -3,6 +3,9 @@ package styles;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * Default style for text items.
+ */
 class TextItemStyle extends SlideItemStyle implements FontStyle {
 	private static final String FONTNAME = "Helvetica";
 	private Font font;
@@ -15,8 +18,9 @@ class TextItemStyle extends SlideItemStyle implements FontStyle {
 		font = new Font(FONTNAME, Font.BOLD, getSize());
 		return font.deriveFont(getSize() * scale);
 
-	}@Override
+	}
 	
+	@Override
 	public int getSize() {
 		switch (getLevel()) {
 			case 0:

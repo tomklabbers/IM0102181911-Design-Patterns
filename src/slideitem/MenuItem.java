@@ -10,6 +10,7 @@ class MenuItem extends SlideItem implements SlideItemTextValue, SlideItemMenuIte
 		this.maxIndex = 0;
 	}
 	
+	@Override
 	public void setIndexes(int currentIndex, int maxIndex) {
 		this.currentIndex = currentIndex;
 		this.maxIndex = maxIndex;
@@ -23,5 +24,10 @@ class MenuItem extends SlideItem implements SlideItemTextValue, SlideItemMenuIte
 	@Override
 	public String getValue() {
 		return "Slide "+currentIndex+" of "+maxIndex;
+	}
+	
+	@Override
+	public String toString() {
+		return "MenuItem[" + getStyle() + "," + getValue() + "]";
 	}
 }

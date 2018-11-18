@@ -2,6 +2,9 @@ package model;
 
 import java.util.Vector;
 
+/**
+ * Interface for presentation models.
+ */
 public interface Presentation {
 	public void setTitle(String title);
 	

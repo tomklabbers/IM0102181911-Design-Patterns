@@ -30,7 +30,6 @@ import styles.StyleFactory;
  * XMLSerializer allows to read or write a presentation from or to a XML source
  *
  */
-
 public class XMLSerializer implements Serializer{
 	
 	/** Default API to use. */
@@ -57,7 +56,6 @@ public class XMLSerializer implements Serializer{
      * @param tagName
      * @return content of element
      */
-    
     private String getElementContent(Element element, String tagName) {
     		NodeList nodes = element.getElementsByTagName(tagName);
     		return nodes.item(0).getTextContent();
@@ -175,7 +173,6 @@ public class XMLSerializer implements Serializer{
 	 * @param out PrintWrite
 	 * @param slideItem The slide item to write
 	 */
-	
 	private void serializeItem(PrintWriter out, SlideItem slideItem) {
 		out.print("<item kind="); 
 		if (slideItem instanceof SlideItemTextValue) {

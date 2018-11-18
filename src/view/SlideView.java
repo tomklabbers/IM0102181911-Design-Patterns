@@ -5,6 +5,9 @@ import javax.swing.JComponent;
 import actions.SlideAction;
 import model.Slide;
 
+/**
+ * Slide view to display slide items.
+ */
 public abstract class SlideView extends JComponent {
 	private static final long serialVersionUID = 1L;
 	

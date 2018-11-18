@@ -94,10 +94,16 @@ public class PresentationController implements PresentationControl{
 	public void clickAction(int x, int y) {
 		SlideAction item = slideController.getView().getItemAtPos(x, y);
 		if (item != null) {
+			// Pass the current controller instance to the action.
+			// The action uses this controller to change the presentation state
 			item.executeAction(this);
 		}		
 	}
 	
+	/**
+	 * Notify the slide controller that the state of
+	 * the model is changed.
+	 */
 	private void updateView() {
 		slideController.updateView();
 	}

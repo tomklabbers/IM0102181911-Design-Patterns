@@ -7,6 +7,9 @@ import java.awt.image.ImageObserver;
 import slideitem.SlideItem;
 import slideitem.SlideItemImageValue;
 
+/**
+ * Draw image using Graphics
+ */
 class GImagePainter extends GraphicsPainter {
 	private ImageObserver observer;
 	

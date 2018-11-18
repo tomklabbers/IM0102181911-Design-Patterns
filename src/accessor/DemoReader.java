@@ -50,7 +50,8 @@ public class DemoReader implements PresentationReader {
 		
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 1, "Het Java Presentatie Tool"));		
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 2,"Copyright (c) 1996-2000: Ian Darwin"));
-		slide.addItem(createDemoItem(SlideItemTypes.ITEM_IMAGE, 2,"serclogo_fc.jpg"));			
+		SlideAction imgActn = ActionFactory.createAction(ActionTypes.ACTION_SOUND, "");
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_IMAGE, 2,"serclogo_fc.jpg", imgActn));		
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 2,"Copyright (c) 2000-now:"));
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 2,"Gert Florijn en Sylvia Stuurman"));
 		slide.addItem(createDemoItem(SlideItemTypes.ITEM_TEXT, 4,"JabberPoint aanroepen zonder bestandsnaam"));

@@ -45,19 +45,12 @@ class BitmapItem extends SlideItem implements SlideItemImageValue {
 		
 	}
 	
-	/** Returns file name of image
-	 * 
-	 * @return image file name
-	 */
-	public String getName() {
-		return imageName;
-	}
-	
 	@Override
 		public SlideItemTypes getType() {
 			return SlideItemTypes.ITEM_IMAGE;
 		}
-
+	
+	@Override
 	public String toString() {
 		return "BitmapItem[" + getStyle() + "," + imageName + "]";
 	}

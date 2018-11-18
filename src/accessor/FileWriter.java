@@ -4,7 +4,6 @@ package accessor;
  * FileWriter allows to write to a file. Needs a Serializer to write the data
  *
  */
-
 public abstract class FileWriter implements PresentationWriter, Accessor {
 	private Serializer serializer;
 	

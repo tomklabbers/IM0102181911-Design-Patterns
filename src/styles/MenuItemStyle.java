@@ -3,6 +3,10 @@ package styles;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * Style for the menu item. Menu item is special. This item uses
+ * a right alignment.
+ */
 class MenuItemStyle extends SlideItemStyle implements FontStyle {
 
 	public MenuItemStyle(int lvl) {

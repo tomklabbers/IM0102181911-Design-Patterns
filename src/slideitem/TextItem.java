@@ -26,6 +26,7 @@ class TextItem extends SlideItem implements SlideItemTextValue {
 		return SlideItemTypes.ITEM_TEXT;
 	}
 	
+	@Override
 	public String toString() {
 		return "TextItem[" + getStyle()+","+getValue()+"]";
 	}

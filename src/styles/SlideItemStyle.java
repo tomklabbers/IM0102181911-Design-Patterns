@@ -1,5 +1,8 @@
 package styles;
 
+/**
+ * Default style for all items.
+ */
 public abstract class SlideItemStyle {
 	private int level;
 	

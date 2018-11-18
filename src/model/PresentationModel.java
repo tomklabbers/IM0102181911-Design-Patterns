@@ -13,14 +13,17 @@ public class PresentationModel implements Presentation {
 		currentSlideIndex = 0;
 	}
 	
+	@Override
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
+	@Override
 	public String getTitle() {
 		return title;
 	}
 	
+	@Override
 	public void addSlide(Slide slide) {
 		slides.add(slide);
 	}
@@ -68,10 +71,15 @@ public class PresentationModel implements Presentation {
 		return slides;
 	}
 	
+	@Override
 	public int getCurrentSlideNumber() {
+		/* Offset the slide index because this
+		   method is used for display the slide number.
+		   Humans count from 1.... */
 		return currentSlideIndex + 1;
 	}
 	
+	@Override
 	public int getSlideCount() {
 		return slides.size();
 	}

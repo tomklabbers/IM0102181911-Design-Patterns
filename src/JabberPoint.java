@@ -29,7 +29,14 @@ public class JabberPoint {
 	protected static final String JABERR = "Jabberpoint Error ";
 	protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
 
-	/** Het Main Programma */
+	/**
+	 * Initialize Jabberpoint. 
+	 * 
+	 * This method creates the views and controllers
+	 * for the Jabberpoint application.
+	 * 
+	 * @param argv
+	 */
 	public static void main(String argv[]) {
 		String presentationPath;
 		PresentationController mainWindowCtrl;
@@ -43,8 +50,10 @@ public class JabberPoint {
 		mainView 		= new PresentationViewFrame();
 		slideView 		= new SlideViewComponent(mainView);
 		slideCtrl 		= new SlideController(slideView);
-		mainView.addKeyListener(new KeyController(mainWindowCtrl));
+		
 		slideView.addMouseListener(new MouseController(mainWindowCtrl));
+		
+		mainView.addKeyListener(new KeyController(mainWindowCtrl));
 		mainView.setMenuBar(menuCtrl);
 		mainView.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -52,16 +61,18 @@ public class JabberPoint {
 			}
 		});
 		
-		mainWindowCtrl.setView(mainView);
-		mainWindowCtrl.setSlideController(slideCtrl);
-		
 		if (argv.length > 0) { 
+			// Path to presentation file to load
 			presentationPath = argv[0];
 		}
 		else {
-			presentationPath = null; // Demo Presentation will be loaded
+			// If no path is given a demo will be loaded
+			presentationPath = null;
 		}
 		
+		// Setup presentation controller and open presentation on start up.
+		mainWindowCtrl.setView(mainView);
+		mainWindowCtrl.setSlideController(slideCtrl);
 		mainWindowCtrl.openPresentation(presentationPath);
 	}
 }
