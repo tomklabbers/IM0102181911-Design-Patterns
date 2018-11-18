@@ -1,6 +1,6 @@
 package actions;
 
-import controller.PresentationControlActions;
+import controller.PresentationControl;
 
 /**
  * Action that allows to go to the next slide of the current Presentation
@@ -9,7 +9,7 @@ import controller.PresentationControlActions;
 public class NextSlideAction extends ActionDecorator {
 
 	@Override
-	public void doExecuteAction(PresentationControlActions controlActions) {
+	public void doExecuteAction(PresentationControl controlActions) {
 		controlActions.nextSlide();
 	}
 

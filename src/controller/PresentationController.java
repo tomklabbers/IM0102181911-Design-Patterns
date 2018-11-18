@@ -1,8 +1,6 @@
 package controller;
 
 import java.awt.Frame;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import accessor.AccessorFactory;
 import accessor.PresentationReader;
@@ -12,35 +10,25 @@ import view.PresentationView;
 import model.Presentation;
 import model.PresentationFactory;
 
-public class PresentationController implements PresentationControlActions{
+public class PresentationController implements PresentationControl{
 	private PresentationView view;
-	private SlideController slideController;
+	private SlideControl slideController;
 	
 	private Presentation model;
 	
-	public PresentationController() {}
-	
+	@Override
 	public void setView(PresentationView view) {
 		this.view = view;
-		this.view.setupWindow();	
-		
-		this.view.addWindowListener(new WindowAdapter() {
-				public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		
+		this.view.updateView();	
 		this.view.setVisible(true);
 	}
 	
-	private void updateView() {
-		slideController.updateView();
-	}
-	
+	@Override
 	public Frame getView() {
 		return view;
 	}
 	
+	@Override
 	public void setModel(Presentation presentation) {
 		model = presentation;
 		slideController.setModel(presentation);
@@ -49,7 +37,8 @@ public class PresentationController implements PresentationControlActions{
 		updateView();
 	}
 	
-	public void open(String path) {
+	@Override
+	public void openPresentation(String path) {
 		PresentationReader reader = AccessorFactory.createReader(path);
 		
 		setModel(PresentationFactory.createPresentation(reader));
@@ -60,37 +49,38 @@ public class PresentationController implements PresentationControlActions{
 		}
 	}
 	
-	public void open() {
+	@Override
+	public void newPresentation() {
 		setModel(PresentationFactory.createPresentation());
 	}
 	
-	public void setSlideController(SlideController slideCtrl) {
+	@Override
+	public void setSlideController(SlideControl slideCtrl) {
 		slideController = slideCtrl;
 		view.getContentPane().add(slideController.getView());
 	}
 	
-	public void save(String path) {
+	@Override
+	public void savePresentation(String path) {
 		PresentationWriter writer = AccessorFactory.createWriter(path);
 		writer.save(model);
 	}
 	
-	public void debug() {
-		PresentationWriter writer = AccessorFactory.createWriter(null);
-		writer.save(model);
-	}
-	
+	@Override
 	public void nextSlide() {
 		if(model.nextSlide()) {
 			updateView();
 		}
 	}
 	
+	@Override
 	public void prevSlide() {
 		if(model.prevSlide()) {
 			updateView();
 		}
 	}
 	
+	@Override
 	public void goToSlide(int index) {
 		// User input has an offset of 1
 		index--;
@@ -100,10 +90,15 @@ public class PresentationController implements PresentationControlActions{
 		}
 	}
 	
+	@Override
 	public void clickAction(int x, int y) {
 		SlideAction item = slideController.getView().getItemAtPos(x, y);
 		if (item != null) {
 			item.executeAction(this);
 		}		
+	}
+	
+	private void updateView() {
+		slideController.updateView();
 	}
 }

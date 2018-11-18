@@ -1,5 +1,9 @@
-import view.PresentationView;
-import view.SlideView;
+import view.PresentationViewFrame;
+import view.SlideViewComponent;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import controller.KeyController;
 import controller.MenuController;
 import controller.MouseController;
@@ -30,18 +34,23 @@ public class JabberPoint {
 		String presentationPath;
 		PresentationController mainWindowCtrl;
 		SlideController slideCtrl;
-		SlideView slideView;
-		PresentationView mainView;
+		SlideViewComponent slideView;
+		PresentationViewFrame mainView;
 		MenuController menuCtrl; 
 		
 		mainWindowCtrl 	= new PresentationController();
 		menuCtrl 		= new MenuController(mainWindowCtrl);
-		mainView 		= new PresentationView();
-		slideView 		= new SlideView(mainView);
+		mainView 		= new PresentationViewFrame();
+		slideView 		= new SlideViewComponent(mainView);
 		slideCtrl 		= new SlideController(slideView);
 		mainView.addKeyListener(new KeyController(mainWindowCtrl));
 		slideView.addMouseListener(new MouseController(mainWindowCtrl));
 		mainView.setMenuBar(menuCtrl);
+		mainView.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 		
 		mainWindowCtrl.setView(mainView);
 		mainWindowCtrl.setSlideController(slideCtrl);
@@ -50,9 +59,9 @@ public class JabberPoint {
 			presentationPath = argv[0];
 		}
 		else {
-			presentationPath = ""; // Demo Presentation will be loaded
+			presentationPath = null; // Demo Presentation will be loaded
 		}
 		
-		mainWindowCtrl.open(presentationPath);
+		mainWindowCtrl.openPresentation(presentationPath);
 	}
 }

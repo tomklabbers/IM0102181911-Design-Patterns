@@ -1,6 +1,6 @@
 package actions;
 
-import controller.PresentationControlActions;
+import controller.PresentationControl;
 
 public abstract class ActionDecorator implements SlideAction {
 	private SlideAction nextAction = null;
@@ -9,12 +9,12 @@ public abstract class ActionDecorator implements SlideAction {
 		return nextAction;
 	}
 	
-	protected abstract void doExecuteAction(PresentationControlActions controlActions);
+	protected abstract void doExecuteAction(PresentationControl controlActions);
 	
 	/**
 	 * Execute the current action and check and execute the next action
 	 */	
-	public final void executeAction(PresentationControlActions controlActions) {
+	public final void executeAction(PresentationControl controlActions) {
 		doExecuteAction(controlActions);
 		if (nextAction != null) {
 			nextAction.executeAction(controlActions);

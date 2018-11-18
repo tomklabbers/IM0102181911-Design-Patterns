@@ -1,6 +1,6 @@
 package actions;
 
-import controller.PresentationControlActions;
+import controller.PresentationControl;
 
 /**
  * Action that allows to go to the previous slide of the current presentation
@@ -9,7 +9,7 @@ import controller.PresentationControlActions;
 public class PreviousSlideAction extends ActionDecorator {
 
 	@Override
-	public void doExecuteAction(PresentationControlActions controlActions) {
+	public void doExecuteAction(PresentationControl controlActions) {
 		controlActions.prevSlide();
 	}
 

@@ -2,7 +2,7 @@ package actions;
 
 import java.awt.Toolkit;
 
-import controller.PresentationControlActions;
+import controller.PresentationControl;
 
 /**
  * Action that beeps on execution
@@ -12,7 +12,7 @@ import controller.PresentationControlActions;
 class SystemBeepAction extends ActionDecorator {
 
 	@Override
-	public void doExecuteAction(PresentationControlActions controlActions) {
+	public void doExecuteAction(PresentationControl controlActions) {
 		Toolkit.getDefaultToolkit().beep();	
 	}
 	

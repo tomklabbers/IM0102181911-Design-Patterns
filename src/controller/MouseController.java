@@ -5,14 +5,14 @@ import java.awt.event.MouseEvent;
 
 public class MouseController extends MouseAdapter {
 	
-	PresentationController controller;
+	PresentationControl controller;
 	
 	public MouseController(PresentationController ctrl) {
 		controller = ctrl;
 	}
 	
+	@Override
 	public void mouseClicked(MouseEvent e) {
-	    System.out.println("You clicked mouse at coordinates " + e.getX() + ", " + e.getY());
 	    controller.clickAction(e.getX(), e.getY());
 	}
 }

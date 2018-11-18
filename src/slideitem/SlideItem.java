@@ -2,7 +2,7 @@ package slideitem;
 
 import actions.ActionTypes;
 import actions.SlideAction;
-import controller.PresentationControlActions;
+import controller.PresentationControl;
 import styles.SlideItemStyle;
 
 /** <p>De abstracte klasse voor een item op een Slide<p>
@@ -40,7 +40,7 @@ public abstract class SlideItem implements SlideAction{
 	}
 	
 	@Override
-	public void executeAction(PresentationControlActions controlActions) {
+	public void executeAction(PresentationControl controlActions) {
 		if (action != null) {
 			action.executeAction(controlActions);
 		}

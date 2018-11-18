@@ -15,30 +15,28 @@ import java.awt.event.KeyAdapter;
 */
 
 public class KeyController extends KeyAdapter {
-	PresentationController controller;
+	PresentationControl controller;
 	
-	public KeyController(PresentationController ctrl) {
+	public KeyController(PresentationControl ctrl) {
 		controller = ctrl;
 	}
-
+	
+	@Override
 	public void keyPressed(KeyEvent keyEvent) {
 		switch(keyEvent.getKeyCode()) {
 			case KeyEvent.VK_PAGE_DOWN:
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_ENTER:
 			case '+':
-				System.out.println("Key + :: Next Slide");
 				controller.nextSlide();
 				break;
 			case KeyEvent.VK_PAGE_UP:
 			case KeyEvent.VK_UP:
 			case '-':
-				System.out.println("Key - :: Prev Slide");
 				controller.prevSlide();
 				break;
 			case 'q':
 			case 'Q':
-				System.out.println("Key Q :: Quit");
 				System.exit(0);
 				break; // wordt nooit bereikt als het goed is
 			default:

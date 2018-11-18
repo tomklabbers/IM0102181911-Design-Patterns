@@ -1,9 +1,9 @@
 package actions;
 
-import controller.PresentationControlActions;
+import controller.PresentationControl;
 
 public interface SlideAction {
-	public void executeAction(PresentationControlActions controlActions);
+	public void executeAction(PresentationControl controlActions);
 	public void setAction(SlideAction action);
 	public SlideAction getAction();
 	public ActionTypes getActionType();

@@ -26,7 +26,7 @@ import view.AboutView;
  */
 public class MenuController extends MenuBar {
 	
-	private PresentationController controller;
+	private PresentationControl controller;
 	final JFileChooser fc;
 	
 	private static final long serialVersionUID = 227L;
@@ -45,16 +45,10 @@ public class MenuController extends MenuBar {
 	protected static final String PREV = "Prev";
 	protected static final String SAVE = "Save";
 	protected static final String VIEW = "View";
-	
-	protected static final String TESTFILE = "test.xml";
-	protected static final String SAVEFILE = "dump.xml";
-	
-	protected static final String IOEX = "IO Exception: ";
-	protected static final String LOADERR = "Load Error";
-	protected static final String SAVEERR = "Save Error";
 
-	public MenuController(PresentationController ctrl) {
+	public MenuController(PresentationControl ctrl) {
 		controller = ctrl;
+		
 		fc = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Jabber Files", "xml", "json");
 		fc.setFileFilter(filter);
@@ -73,7 +67,7 @@ public class MenuController extends MenuBar {
 		        if (returnVal == JFileChooser.APPROVE_OPTION) {
 		            File file = fc.getSelectedFile();
 
-		            controller.open(file.getPath());
+		            controller.openPresentation(file.getPath());
 		        } else {
 		            System.out.println("Open command cancelled by user.");
 		        }
@@ -83,21 +77,19 @@ public class MenuController extends MenuBar {
 		fileMenu.add(menuItem = mkMenuItem(NEW));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				System.out.println("File :: NEW");
-				controller.open();
+				controller.newPresentation();
 			}
 		});
 		
 		fileMenu.add(menuItem = mkMenuItem(SAVE));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("File :: Save");
 				int returnVal = fc.showSaveDialog(controller.getView());
 
 		        if (returnVal == JFileChooser.APPROVE_OPTION) {
 		            File file = fc.getSelectedFile();
 
-		            controller.save(file.getPath());
+		            controller.savePresentation(file.getPath());
 		        } else {
 		            System.out.println("Save command cancelled by user.");
 		        }
@@ -108,7 +100,8 @@ public class MenuController extends MenuBar {
 		fileMenu.add(menuItem = mkMenuItem(DEMO));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.open(""); // Open Demo
+				// Open Demo presentation
+				controller.openPresentation(null);
 			}
 		});
 		
@@ -163,14 +156,16 @@ public class MenuController extends MenuBar {
 		helpMenu.add(menuItem = mkMenuItem(DEBUG));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				controller.debug();
+				// Activates the demo writer to print presentation to console
+				controller.savePresentation(null);
 			}
 		});
+		
 		setHelpMenu(helpMenu);// nodig for portability (Motif, etc.).
 	}
 
 	// een menu-item aanmaken
-	public MenuItem mkMenuItem(String name) {
+	private MenuItem mkMenuItem(String name) {
 		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
 	}
 }

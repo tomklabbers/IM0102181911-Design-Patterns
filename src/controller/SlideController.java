@@ -4,7 +4,7 @@ import model.Presentation;
 import model.Slide;
 import view.SlideView;
 
-public class SlideController {
+public class SlideController implements SlideControl {
 	private SlideView view;
 	private Presentation model;
 	
@@ -12,14 +12,17 @@ public class SlideController {
 		view = slideView;
 	}
 	
+	@Override
 	public void setModel(Presentation presentation) {
 		model = presentation;
 	}
 	
+	@Override
 	public SlideView getView() {
 		return view;
 	}
 	
+	@Override
 	public void updateView() {
 		Slide slide = model.getCurrentSlide();
 		

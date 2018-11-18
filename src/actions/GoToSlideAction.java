@@ -1,6 +1,6 @@
 package actions;
 
-import controller.PresentationControlActions;
+import controller.PresentationControl;
 
 /**
  * Action that allows to go to a specified slide number within the current Presentation
@@ -14,7 +14,7 @@ public class GoToSlideAction extends ActionDecorator {
 	}
 	
 	@Override
-	public void doExecuteAction(PresentationControlActions controlActions) {
+	public void doExecuteAction(PresentationControl controlActions) {
 		controlActions.goToSlide(slideNumber);	
 	}
 	

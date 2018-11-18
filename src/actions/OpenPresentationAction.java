@@ -1,6 +1,6 @@
 package actions;
 
-import controller.PresentationControlActions;
+import controller.PresentationControl;
 
 /**
  * Action that allows to open a specified presentation
@@ -15,8 +15,8 @@ public class OpenPresentationAction extends ActionDecorator {
 	}
 	
 	@Override
-	public void doExecuteAction(PresentationControlActions controlActions) {
-		controlActions.open(path);
+	public void doExecuteAction(PresentationControl controlActions) {
+		controlActions.openPresentation(path);
 	}
 
 	@Override
