@@ -6,15 +6,9 @@ import view.SlideView;
 
 public class SlideController implements SlideControl {
 	private SlideView view;
-	private Presentation model;
 	
 	public SlideController(SlideView slideView) {
 		view = slideView;
-	}
-	
-	@Override
-	public void setModel(Presentation presentation) {
-		model = presentation;
 	}
 	
 	@Override
@@ -23,7 +17,7 @@ public class SlideController implements SlideControl {
 	}
 	
 	@Override
-	public void updateView() {
+	public void updateView(Presentation model) {
 		Slide slide = model.getCurrentSlide();
 		
 		if(slide != null) {

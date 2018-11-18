@@ -31,7 +31,6 @@ public class PresentationController implements PresentationControl{
 	@Override
 	public void setModel(Presentation presentation) {
 		model = presentation;
-		slideController.setModel(presentation);
 		
 		view.setTitle(model.getTitle());
 		updateView();
@@ -105,6 +104,6 @@ public class PresentationController implements PresentationControl{
 	 * the model is changed.
 	 */
 	private void updateView() {
-		slideController.updateView();
+		slideController.updateView(model);
 	}
 }

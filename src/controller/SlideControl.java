@@ -8,6 +8,5 @@ import view.SlideView;
  */
 public interface SlideControl {
 	public SlideView getView();
-	public void updateView();
-	public void setModel(Presentation model);
+	public void updateView(Presentation model);
 }
