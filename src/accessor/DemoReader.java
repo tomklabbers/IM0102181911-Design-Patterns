@@ -86,10 +86,20 @@ public class DemoReader implements PresentationReader {
 		SlideAction prevActn = ActionFactory.createAction(ActionTypes.ACTION_PREV_PRESENTATION, "");
 		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Vorige slide", prevActn));	
 		SlideAction beepActn = ActionFactory.createAction(ActionTypes.ACTION_SOUND, "");
-		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Beep", beepActn));	
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Beep", beepActn));
+		
+		beepActn = ActionFactory.createAction(ActionTypes.ACTION_SOUND, "");
+		beepActn.setAction(nextActn);
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Next + Beep", beepActn));
+		
+		SlideAction openActn = ActionFactory.createAction(ActionTypes.ACTION_OPEN_PRESENTATION, "test.xml");
+		beepActn = ActionFactory.createAction(ActionTypes.ACTION_SOUND, "");
+		openActn.setAction(beepActn);
+		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Beep + Open text.xml", openActn));
+		
 		SlideAction gotoActn = ActionFactory.createAction(ActionTypes.ACTION_GOTO_PRESENTATION, "1");
 		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Ga naar de eerste slide", gotoActn));
-		SlideAction openActn = ActionFactory.createAction(ActionTypes.ACTION_OPEN_PRESENTATION, "test.xml");
+		openActn = ActionFactory.createAction(ActionTypes.ACTION_OPEN_PRESENTATION, "test.xml");
 		slide.addItem(createActionedDemoItem(SlideItemTypes.ITEM_TEXT, 3,"Open test.xml", openActn));
 		
 		presentation.addSlide(slide);		
