@@ -22,9 +22,9 @@ public class SlideViewComponent extends SlideView {
 	
 	private Slide model;
 	private Map<Rectangle, SlideItem> itemLookup;
-	private PresentationViewFrame parentView;
+	private PresentationView parentView;
 	
-	public SlideViewComponent(PresentationViewFrame view) {
+	public SlideViewComponent(PresentationView view) {
 		super();
 		
 		this.parentView = view;
